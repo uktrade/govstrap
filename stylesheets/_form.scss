@@ -1,0 +1,50 @@
+.form-group--compact {
+  + .form-group--compact {
+    margin-top: em(12);
+  }
+}
+
+.form-control {
+
+  + p {
+    margin-top: em(5);
+  }
+
+  + .form-control {
+    display: block;
+    margin-top: em(10);
+  }
+
+  @include media(tablet) {
+    width: 66%;
+  }
+}
+
+
+.form-group.form-group--compact {
+  margin-bottom: 10px;
+}
+
+.fieldset-group {
+  margin-top: em(22);
+  float: left;
+  width: 100%;
+
+  .form-group {
+    .form-label {
+      display: none;
+    }
+
+    &:first-child {
+      .form-label {
+        display: block;
+      }
+    }
+  }
+}
+
+.form-group__checkbox-group {
+  .form-label {
+    margin-bottom: 3px;
+  }
+}

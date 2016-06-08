@@ -1,0 +1,47 @@
+{% extends "govstrap.html" %}
+{% import "macros/forms.html" as forms %}
+
+
+{% block main %}
+
+  <h1 class="heading-xlarge">Govstrap gallery</h1>
+
+  {{ forms.textbox('name', label="Name", value=name, error=errors.name) }}
+  {{ forms.textbox('job', label="Job tile", value=job, error=errors.job) }}
+  {{ forms.textarea('jobDescription', label="Job description", value=jobDescription) }}
+
+  {{ forms.addAnother('countryOfInterest',
+    label="Future countries of interest",
+    addLabel="Select a company",
+    values=countryOfInterest,
+    error=errors.countryOfInterest) }}
+
+  {{ forms.address('address',
+    label="Address",
+    value=address,
+    error=errors.address) }}
+
+  {{ forms.yesNo('primaryContact',
+    label="Is this person a primary contact?",
+    radioValue=primaryContact,
+    error=errors.primaryContact) }}
+
+  {% call forms.yesNoHidden('hasAccountManager',
+    label="Is there an agreed UKTI account manager for this company?",
+    radioValue=hasManager,
+    error=errors.accountManager)
+  -%}
+    {{ forms.textbox('accountManager', label="Account manager", value=accountManager, error=errors.accountManager) }}
+  {%- endcall %}
+
+  {{ forms.dropdown('advisor',
+    label="Advisor",
+    emptyLabel="Please select the advisor",
+    value=advisor,
+    options=advisors,
+    error=errors.advisor
+  ) }}
+
+
+{% endblock %}
+
