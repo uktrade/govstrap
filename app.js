@@ -32,7 +32,10 @@ nunjucks.ready(function(nj) {
 });
 
 
-app.use(express.static(`${__dirname}/gallery/public`));
+app.use('/images', express.static(`${__dirname}/images`));
+app.use('/images', express.static(`${__dirname}/node_modules/govuk_frontend_toolkit/images`));
+app.use('/fonts', express.static(`${__dirname}/node_modules/govuk_template_mustache/assets/stylesheets`));
+
 app.use(express.static(`${__dirname}/build`));
 app.use(express.static(`${__dirname}/node_modules/govuk_template_jinja/assets`));
 
@@ -53,9 +56,9 @@ app.get('/', function(req, res) {
       postcode: 'SL4 4QR'
     },
     primaryContact: true,
-    hasManager: true,
+    hasManager: false,
     accountManager: 'George Clooney',
-    advusir: 'Paul',
+    advisor: 'Paul',
     advisors: ['George', 'Paul', 'John', 'Ringo'],
     errors: {
       name: 'You must enter a name'

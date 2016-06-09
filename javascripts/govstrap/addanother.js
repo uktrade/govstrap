@@ -3,6 +3,7 @@
 import $ from 'jquery';
 
 class AddAnother {
+
   constructor(element) {
     this.element = $(element);
     const fieldGroups = this.element.find('.form-group');

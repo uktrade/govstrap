@@ -1,8 +1,17 @@
 {% extends "layouts/govuk_template.html" %}
+{% import "macros/search.html" as search %}
 
-{% block inside_header %}
-  <div class="project-name">Govstrap</div>
+{% block header_class %}with-proposition{% endblock %}
+
+
+{% block proposition_header %}
+  {% set searchbarType = "header" %}
+  <div class="header-proposition">
+    Govstrap
+    {{ search.searchbar('query', label="Search companies and contacts", value="", type="header") }}
+  </div>
 {% endblock %}
+
 
 {% block head %}
   <link href="{{ asset_path }}stylesheets//application.css" rel="stylesheet" type="text/css">

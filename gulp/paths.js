@@ -10,6 +10,5 @@ module.exports = {
   sourceJS: `${projectDir}/gallery/javascripts`,
   libJS: `${projectDir}/javascripts`,
   webpackConfig: `${projectDir}/webpack.config.js`,
-  outputImages: `${projectDir}/build/images`,
   node_modules: `${projectDir}/node_modules`
 };
