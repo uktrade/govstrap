@@ -8,9 +8,8 @@
     "url": "https://github.com/ztolley/govstrap"
   },
   "dependencies": {
-    "govuk-elements-sass": "^1.1.4",
-    "govuk_template_jinja": "https://github.com/alphagov/govuk_template/releases/download/v0.17.3/jinja_govuk_template-0.17.3.tgz",
-    "moment": "^2.13.0"
+    "govuk-elements-sass": "^1.2.1",
+    "govuk_frontend_toolkit": "^4.12.0"
   },
   "devDependencies": {
     "babel-eslint": "^6.0.0",
@@ -28,6 +27,7 @@
     "eslint-plugin-react": "^5.1.1",
     "express": "^4.13.4",
     "express-nunjucks": "^1.0.0",
+    "govuk_template_jinja": "https://github.com/alphagov/govuk_template/releases/download/v0.17.3/jinja_govuk_template-0.17.3.tgz",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-eslint": "^2.0.0",
@@ -42,6 +42,7 @@
     "mocha": "^2.4.5",
     "mocha-junit-reporter": "^1.9.1",
     "mocha-multi": "^0.7.2",
+    "moment": "^2.13.0",
     "require-dir": "^0.3.0",
     "sinomocha": "^0.2.4",
     "sinon": "^1.17.3",
