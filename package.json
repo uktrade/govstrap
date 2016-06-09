@@ -1,6 +1,6 @@
 {
   "name": "govstrap",
-  "version": "0.1.2",
+  "version": "0.1.0",
   "description": "Govstrap is a collection of layout templates and sass tools and used as the front end toolkit for UKTI web services",
   "main": "app.js",
   "repository": {
@@ -56,7 +56,8 @@
     "start": "node app.js",
     "build": "gulp build",
     "develop": "gulp watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postversion": "git push && git push --tags"
   },
   "author": "Zac Tolley <zac@thetolleys.com>",
   "license": "MIT",
