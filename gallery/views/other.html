@@ -1,0 +1,8 @@
+<form>
+  {{ forms.address('address',
+  label="Address",
+  value=address,
+  error=errors.address) }}
+
+  {{ forms.save(backUrl="#") }}
+</form>

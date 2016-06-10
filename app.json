@@ -1,12 +1,10 @@
 {
-  "name":"data-hub-prototype",
+  "name":"govstrap",
   "scripts":{},
   "env":{
     "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-nodejs.git",
-    "NODE_MODULES_CACHE": "false",
-    "COMPANY_KEY": {
-      "required": true
-    }
+    "NPM_CONFIG_PRODUCTION": "false",
+    "NODE_MODULES_CACHE": "false"
   },
   "addons":[]
 }
