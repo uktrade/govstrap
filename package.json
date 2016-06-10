@@ -31,6 +31,7 @@
     "govuk_template_jinja": "https://github.com/alphagov/govuk_template/releases/download/v0.17.3/jinja_govuk_template-0.17.3.tgz",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
     "gulp-eslint": "^2.0.0",
     "gulp-nodemon": "^2.0.6",
     "gulp-rename": "^1.2.2",
