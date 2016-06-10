@@ -1,0 +1,17 @@
+<form>
+  {{ forms.yesNo('primaryContact',
+    label="Is this person a primary contact?",
+    radioValue=primaryContact,
+    error=errors.primaryContact)
+  }}
+
+  {% call forms.yesNoHidden('hasAccountManager',
+    label="Is there an agreed UKTI account manager for this company?",
+    radioValue=hasManager,
+    error=errors.accountManager)
+  -%}
+    {{ forms.textbox('accountManager', label="Account manager", value=accountManager, error=errors.accountManager) }}
+  {%- endcall %}
+
+  {{ forms.save(backUrl="#") }}
+</form>

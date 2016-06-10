@@ -6,6 +6,7 @@ import RadioHide from '../../javascripts/govstrap/radiohide';
 import Edit from '../../javascripts/govstrap/edit';
 import SearchBar from '../../javascripts/govstrap/searchbar';
 import SelectionButton from '../../javascripts/govstrap/selectionbutton';
+import Tabs from '../../javascripts/govstrap/tabs';
 
 $('.js-add-another').each((index, element) => {
     new AddAnother(element);
@@ -28,3 +29,4 @@ $(':radio').each((index,element) => {
   new SelectionButton(element);
 });
 
+new Tabs('.js-tabs');

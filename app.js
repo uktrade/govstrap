@@ -60,6 +60,8 @@ app.get('/', function(req, res) {
     accountManager: 'George Clooney',
     advisor: 'Paul',
     advisors: ['George', 'Paul', 'John', 'Ringo'],
+    sectors: ['Automotive'],
+    SECTOR_OPTIONS: ['Automotive', 'Investment'],
     errors: {
       name: 'You must enter a name'
     }
