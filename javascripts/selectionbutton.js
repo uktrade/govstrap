@@ -48,15 +48,15 @@ class SelectionButtons {
 
   clickHandler = () => {
     this.markSelected();
-  }
+  };
 
   focusHandler = () => {
     this.element.parent('label').addClass(this.focusedClass);
-  }
+  };
 
   blurHandler = () => {
     this.element.parent('label').removeClass(this.focusedClass);
-  }
+  };
 
 }
 

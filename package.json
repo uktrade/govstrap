@@ -1,8 +1,8 @@
 {
   "name": "govstrap",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Govstrap is a collection of layout templates and sass tools and used as the front end toolkit for UKTI web services",
-  "main": "app.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/UKTradeInvestment/govstrap"
@@ -14,9 +14,10 @@
   "devDependencies": {
     "babel-eslint": "^6.0.0",
     "babel-loader": "^6.2.4",
-    "babel-polyfill": "^6.9.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-polyfill": "^6.9.0",
     "babel-preset-es2015": "^6.5.0",
     "browser-sync": "^2.11.2",
     "chai": "^3.5.0",
@@ -53,10 +54,11 @@
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "node gallery/app.js",
     "build": "gulp build",
     "develop": "gulp watch",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "gulp build",
     "heroku-postbuild": "gulp build"
   },
   "author": "Zac Tolley <zac@thetolleys.com>",

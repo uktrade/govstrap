@@ -31,7 +31,7 @@ class Tabs {
   clickTab = (event) => {
     event.preventDefault();
     this.toggleTab($(event.target));
-  }
+  };
 
   toggleTab(tab) {
     tab.parents('.tabs-nav')

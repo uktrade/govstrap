@@ -32,14 +32,14 @@ class Edit {
     this.editView.hide();
     this.dataView.show();
     $('html, body').scrollTop(0);
-  }
+  };
 
   showEditView = (event) => {
     if (event) event.preventDefault();
     this.dataView.hide();
     this.editView.show();
     this.editView.find('.form-control:first').focus();
-  }
+  };
 
 }
 

@@ -3,10 +3,10 @@ const projectDir = path.resolve(__dirname, '../');
 
 module.exports = {
   output: `${projectDir}/build`,
-  outputStyles: `${projectDir}/build/stylesheets`,
-  outputJS: `${projectDir}/build/javascripts`,
+  outputStyles: `${projectDir}/public/stylesheets`,
+  outputJS: `${projectDir}/public/javascripts`,
   sourceStyles: `${projectDir}/gallery/stylesheets`,
-  sassLib: `${projectDir}/stylesheets`,
+  sassLib: `${projectDir}/sass`,
   sourceJS: `${projectDir}/gallery/javascripts`,
   libJS: `${projectDir}/javascripts`,
   webpackConfig: `${projectDir}/webpack.config.js`,

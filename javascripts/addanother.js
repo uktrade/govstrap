@@ -36,7 +36,7 @@ class AddAnother {
     newFormGroup.insertAfter(lastField);
 
     newInput.focus();
-  }
+  };
 }
 
 export default AddAnother;

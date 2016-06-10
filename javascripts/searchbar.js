@@ -22,7 +22,7 @@ class SearchBar {
 
   inputFocusHandler = () => {
     this.label.hide();
-  }
+  };
 
   inputBlurHandler = () => {
     if (this.input.val() === '') {
@@ -30,7 +30,7 @@ class SearchBar {
     } else {
       this.label.hide();
     }
-  }
+  };
 
 }
 

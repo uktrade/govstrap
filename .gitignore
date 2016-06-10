@@ -6,7 +6,8 @@
 
 # Ignore the build directory
 /build
-
+/dist
+/public
 # Ignore cache
 /.sass-cache
 /.cache

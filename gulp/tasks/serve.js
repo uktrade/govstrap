@@ -6,7 +6,7 @@ gulp.task('serve', (cb) => {
 
 	return nodemon({
     exec: 'node --debug',
-		script: 'app.js',
+		script: 'gallery/app.js',
     ignore: './javascripts',
 	}).on('start', function() {
 		// to avoid nodemon being started multiple times
