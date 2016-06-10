@@ -2,12 +2,14 @@
 {% import "macros/search.html" as search %}
 
 {% block header_class %}with-proposition{% endblock %}
+{% set global_header_text="Govstrap" %}
+{% set homepage_url = "/" %}
+{% set logo_link_title = "Go to Govstrap homepage" %}
 
 
 {% block proposition_header %}
   {% set searchbarType = "header" %}
   <div class="header-proposition">
-    Govstrap
     {{ search.searchbar('query', label="Search companies and contacts", value="", type="header") }}
   </div>
 {% endblock %}
@@ -21,7 +23,7 @@
   <main id="content" role="main">
     <div class="phase-banner-alpha">
       <p>
-        <strong class="phase-tag">Govstrap</strong>
+        <strong class="phase-tag">Alpha</strong>
         <a href="https://github.com/UKTradeInvestment/govstrap">Github project</a>
         | <a href="https://www.npmjs.com/package/govstrap">NPM Module</a>
       </p>
