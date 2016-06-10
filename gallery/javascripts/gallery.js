@@ -1,12 +1,12 @@
 'use strict';
 
 import $ from 'jquery';
-import AddAnother from '../../javascripts/govstrap/addanother';
-import RadioHide from '../../javascripts/govstrap/radiohide';
-import Edit from '../../javascripts/govstrap/edit';
-import SearchBar from '../../javascripts/govstrap/searchbar';
-import SelectionButton from '../../javascripts/govstrap/selectionbutton';
-import Tabs from '../../javascripts/govstrap/tabs';
+import AddAnother from '../../javascripts/addanother';
+import RadioHide from '../../javascripts/radiohide';
+import Edit from '../../javascripts/edit';
+import SearchBar from '../../javascripts/searchbar';
+import SelectionButton from '../../javascripts/selectionbutton';
+import Tabs from '../../javascripts/tabs';
 
 $('.js-add-another').each((index, element) => {
     new AddAnother(element);

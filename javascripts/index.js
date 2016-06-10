@@ -2,7 +2,7 @@ const AddAnother = require('./addAnother');
 const Edit = require('./edit');
 const RadioHide = require('./radiohide');
 const SearchBar = require('./searchbar');
-const SelectionButtons = require('./selectionbutton');
+const SelectionButton = require('./selectionbutton');
 const Tabs = require('./tabs');
 
 module.exports = {
@@ -10,5 +10,6 @@ module.exports = {
   Edit: Edit,
   RadioHide: RadioHide,
   SearchBar: SearchBar,
-  SelectionButtons: SelectionButtons
+  SelectionButton: SelectionButton,
+  Tabs: Tabs
 };

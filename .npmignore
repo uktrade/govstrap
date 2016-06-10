@@ -1,5 +1,5 @@
 /*
 !/nunjucks
 !/images
-!/javascripts
-!/stylesheets
+!/sass
+!/dist

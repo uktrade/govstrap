@@ -3,8 +3,9 @@
 const express = require('express');
 const app = express();
 const nunjucks = require('express-nunjucks');
-const filters = require('./nunjucks/filters');
+const filters = require('../nunjucks/filters/index');
 const config = require('./config');
+const path = require('path');
 
 
 let nunjucksConfig = {
@@ -17,10 +18,13 @@ if (config.env !== 'production') {
 
 app.set('view engine', 'html');
 app.set('views', [
-  `${__dirname}/gallery/views`,
-  `${__dirname}/node_modules/govuk_template_jinja/views`,
-  `${__dirname}/nunjucks`
+  path.resolve('./gallery/views'),
+  path.resolve('./node_modules/govuk_template_jinja/views'),
+  path.resolve('./nunjucks')
 ]);
+
+console.log(path.resolve('../nunjucks'));
+
 
 nunjucks.setup(nunjucksConfig, app);
 
@@ -31,14 +35,11 @@ nunjucks.ready(function(nj) {
   });
 });
 
-
-app.use('/images', express.static(`${__dirname}/images`));
-app.use('/images', express.static(`${__dirname}/node_modules/govuk_frontend_toolkit/images`));
-app.use('/fonts', express.static(`${__dirname}/node_modules/govuk_template_mustache/assets/stylesheets`));
-
-app.use(express.static(`${__dirname}/build`));
-app.use(express.static(`${__dirname}/node_modules/govuk_template_jinja/assets`));
-
+app.use('/images', express.static(path.resolve('./images')));
+app.use('/images', express.static(path.resolve('./node_modules/govuk_frontend_toolkit/images')));
+app.use('/fonts', express.static(path.resolve('./node_modules/govuk_template_mustache/assets/stylesheets')));
+app.use(express.static(path.resolve('./public')));
+app.use(express.static(path.resolve('./node_modules/govuk_template_jinja/assets')));
 
 
 app.get('/', function(req, res) {
