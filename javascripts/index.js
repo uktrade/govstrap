@@ -1,4 +1,4 @@
-const AddAnother = require('./addAnother');
+const AddAnother = require('./addanother');
 const Edit = require('./edit');
 const RadioHide = require('./radiohide');
 const SearchBar = require('./searchbar');

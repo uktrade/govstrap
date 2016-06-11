@@ -22,3 +22,7 @@ Move project to new repo.
 - Updated NPM Build process to expose dist for js, sass, images, nunjucks
 - Moved gallery starter file and config into own folder so not exported
 - Updated package description to point to exported javascript
+
+# 0.4.1
+
+- Fix case sensitive typo creating javascript library entrypoint
