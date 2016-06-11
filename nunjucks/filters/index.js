@@ -77,4 +77,18 @@ filter.highlight = function highlight(text, phrase) {
   return text.replace( regex, '<strong>$1</strong>' );
 };
 
+filter.attributeArray = function attributeArray(list) {
+
+  let result = '[';
+
+  for (var iPos = 0; iPos < list.length -1; iPos += 1) {
+    result += '&#34;' + list[iPos] + '&#34;,';
+  }
+
+  result += '&#34;' + list[list.length - 1] + '&#34;]';
+  
+  return result;
+
+};
+
 module.exports = filter;

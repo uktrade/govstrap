@@ -2,6 +2,7 @@
 $gt-big-phone: '>414px';
 
 // application specific
+@import 'autocomplete';
 @import 'button-bar.scss';
 @import 'lined-list';
 @import 'form';
