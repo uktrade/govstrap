@@ -33,9 +33,10 @@ class SelectionButtons {
   markSelected() {
     if (this.elementType === 'radio') {
 
-      for (let element of this.allWithName) {
-        $(element).parent('label').removeClass(this.selectedClass);
-      }
+      const selectedClass = this.selectedClass;
+      this.allWithName.each((index, element) => {
+        $(element).parent('label').removeClass(selectedClass);
+      });
 
       this.label.addClass(this.selectedClass);
 
