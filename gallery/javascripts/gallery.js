@@ -7,6 +7,8 @@ import Edit from '../../javascripts/edit';
 import SearchBar from '../../javascripts/searchbar';
 import SelectionButton from '../../javascripts/selectionbutton';
 import Tabs from '../../javascripts/tabs';
+import Autocomplete from '../../javascripts/autocomplete';
+
 
 $('.js-add-another').each((index, element) => {
     new AddAnother(element);
@@ -30,3 +32,7 @@ $(':radio').each((index,element) => {
 });
 
 new Tabs('.js-tabs');
+
+$('.js-autocomplete').each((index, element) => {
+  new Autocomplete(element);
+});

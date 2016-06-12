@@ -23,9 +23,6 @@ app.set('views', [
   path.resolve('./nunjucks')
 ]);
 
-console.log(path.resolve('../nunjucks'));
-
-
 nunjucks.setup(nunjucksConfig, app);
 
 // Add extra filters to nunjucks
