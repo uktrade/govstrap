@@ -26,3 +26,11 @@ Move project to new repo.
 # 0.4.1
 
 - Fix case sensitive typo creating javascript library entrypoint
+
+# 0.5.0
+
+- Added prebuilt js for easier usage
+- Added minified css output.
+- Added macros to easily include js and css
+- Added autocomplete component
+- Added support for IE9 and above
