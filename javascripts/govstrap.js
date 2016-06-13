@@ -1,17 +1,17 @@
 'use strict';
 
 import $ from 'jquery';
-import AddAnother from '../../javascripts/addanother';
-import RadioHide from '../../javascripts/radiohide';
-import Edit from '../../javascripts/edit';
-import SearchBar from '../../javascripts/searchbar';
-import SelectionButton from '../../javascripts/selectionbutton';
-import Tabs from '../../javascripts/tabs';
-import Autocomplete from '../../javascripts/autocomplete';
+import AddAnother from './addanother';
+import RadioHide from './radiohide';
+import Edit from './edit';
+import SearchBar from './searchbar';
+import SelectionButton from './selectionbutton';
+import Tabs from './tabs';
+import Autocomplete from './autocomplete';
 
 
 $('.js-add-another').each((index, element) => {
-    new AddAnother(element);
+  new AddAnother(element);
 });
 
 $('.js-hidden-edit').each((index, element) => {

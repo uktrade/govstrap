@@ -4,7 +4,7 @@ const paths = require('../paths');
 
 
 gulp.task('babel', () => {
-  return gulp.src(paths.libJS + '/*.js')
+  return gulp.src(paths.sourceJS + '/*.js')
     .pipe(babel())
     .pipe(gulp.dest('dist'));
 });
