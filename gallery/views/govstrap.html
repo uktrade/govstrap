@@ -1,5 +1,6 @@
 {% extends "layouts/govuk_template.html" %}
 {% import "macros/search.html" as search %}
+{% import "macros/utils.html" as utils %}
 
 {% block header_class %}with-proposition{% endblock %}
 {% set global_header_text="Govstrap" %}
@@ -15,9 +16,7 @@
 {% endblock %}
 
 {% block head %}
-  <link href="{{ asset_path }}stylesheets//govstrap.css" rel="stylesheet" type="text/css">
-{% endblock %}
-
+  {{ utils.govstrap_styles() }}{% endblock %}
 {% block content %}
 
   <main id="content" role="main">
@@ -36,5 +35,5 @@
 {% endblock %}
 
 {% block body_end %}
-  <script src="{{ asset_path }}javascripts/govstrap.min.js"></script>
+  {{ utils.govstrap_scripts() }}
 {% endblock %}

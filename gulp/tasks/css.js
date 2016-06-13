@@ -5,6 +5,7 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const paths = require('../paths');
 const del = require('del');
+const rename = require('gulp-rename');
 
 const SASS_PATHS = [
   paths.sassLib,
@@ -36,14 +37,13 @@ function buildProductionStyles() {
     .pipe(autoprefixer({
       browsers: ['> 1%', 'last 2 versions', 'IE 9']
     }))
+    .pipe(rename('govstrap.min.css'))
     .pipe(gulp.dest(paths.outputStyles));
 }
 
 gulp.task('css', (done) => {
   del(paths.outputStyles);
-  if (process.env.NODE_ENV === 'production') {
-    buildProductionStyles();
-  }
+  buildProductionStyles();
   buildDevelopmentStyles();
   done();
 });
