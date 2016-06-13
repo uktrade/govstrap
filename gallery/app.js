@@ -6,7 +6,7 @@ const nunjucks = require('express-nunjucks');
 const filters = require('../nunjucks/filters/index');
 const config = require('./config');
 const path = require('path');
-
+const compression = require('compression');
 
 let nunjucksConfig = {
   autoescape: true
@@ -16,6 +16,7 @@ if (config.env !== 'production') {
   nunjucksConfig.noCache = true;
 }
 
+app.use(compression());
 app.set('view engine', 'html');
 app.set('views', [
   path.resolve('./gallery/views'),

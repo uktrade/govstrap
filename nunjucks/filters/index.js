@@ -1,6 +1,7 @@
 'use strict';
 
 var moment = require('moment');
+var pkgJson = require('../../package.json');
 
 /**
  * object used store the methods registered as a 'filter' (of the same name) within nunjucks
@@ -86,9 +87,21 @@ filter.attributeArray = function attributeArray(list) {
   }
 
   result += '&#34;' + list[list.length - 1] + '&#34;]';
-  
+
   return result;
 
+};
+
+filter.versionAssetUrl = function(asset) {
+  let env = process.env.NODE_ENV || 'develop';
+  if (env == 'production') {
+    let pos = asset.lastIndexOf('.');
+    if (pos !== -1) {
+      asset = asset.substr(0, pos) + '.min' + asset.substr(pos);
+    }
+  }
+
+  return `${asset}?${pkgJson.version}`;
 };
 
 module.exports = filter;
