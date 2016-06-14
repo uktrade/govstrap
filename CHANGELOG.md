@@ -34,3 +34,8 @@ Move project to new repo.
 - Added macros to easily include js and css
 - Added autocomplete component
 - Added support for IE9 and above
+
+# 0.6.0
+
+- Added ajax support to autocomplete control
+- Improved autocomplete styling so suggestions don't push the page down
