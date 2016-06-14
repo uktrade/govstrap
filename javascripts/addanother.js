@@ -1,6 +1,7 @@
 'use strict';
 
 import $ from 'jquery';
+import Autocomplete from './autocomplete';
 
 class AddAnother {
   constructor(element) {
@@ -36,6 +37,11 @@ class AddAnother {
     newFormGroup.insertAfter(lastField);
 
     newInput.focus();
+
+    if (newInput.hasClass('js-autocomplete')) {
+      new Autocomplete(newInput);
+    }
+
   };
 }
 

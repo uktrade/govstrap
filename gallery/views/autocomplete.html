@@ -13,5 +13,15 @@
     options_url="/lookup?query="
   ) }}
 
+  {{ forms.addAnotherAutocomplete('countryOfInterest',
+    label="Country",
+    addLabel="Add country",
+    values=countryOfInterest,
+    options=countryOptions,
+    error=errors.countryOfInterest
+  ) }}
+
+
+
   {{ forms.save(backUrl="#") }}
 </form>

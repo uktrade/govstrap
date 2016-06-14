@@ -7,7 +7,7 @@ const ACTIVECLASS = 'autosuggest__suggestion--active';
 class Autocomplete {
 
   constructor(element) {
-    this.$element = $(element).find('input');
+    this.$element = $(element);
     this.options = this.$element.data('options');
     this.shown = false;
     this.$menu = $('<ul class="autosuggest__suggestions"></ul>');
@@ -16,6 +16,9 @@ class Autocomplete {
     this.minLength = 1;
     this.listen();
     this.optionsUrl = this.$element.data('options-url');
+    this.$element.parent().css({
+      position: 'relative'
+    });
   }
 
   select() {

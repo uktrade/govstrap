@@ -1,20 +1,26 @@
-{% macro textbox(name, label, value='', error) %}
-  <div class="form-group{% if error %} error{% endif %}" id="{{ name }}-wrapper">
-    <label class="form-label" for="{{ name }}">
+{% macro textbox(name, label, value='', id, class, error) %}
+  {% if not id %}
+    {% set id = name %}
+  {% endif %}
+  <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
+    <label class="form-label" for="{{ id }}">
       {{ label }}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
-    <input id="{{ name }}" class="form-control" name="{{ name }}" value="{{ value }}" />
+    <input id="{{ id }}" class="form-control" name="{{ name }}" value="{{ value }}" />
   </div>
 {% endmacro %}
 
-{% macro textarea(name, label, value='', error) %}
-  <div class="form-group{% if error %} error{% endif %}" id="{{ name }}-wrapper">
-    <label class="form-label" for="{{ name }}">
+{% macro textarea(name, label, value='', id, class, error) %}
+  {% if not id %}
+    {% set id = name %}
+  {% endif %}
+  <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
+    <label class="form-label" for="{{ id }}">
       {{ label }}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
-    <textarea id="{{ name }}" class="form-control" name="{{ name }}" rows="5">{{ value }}</textarea>
+    <textarea id="{{ id }}" class="form-control" name="{{ name }}" rows="5">{{ value }}</textarea>
   </div>
 {% endmacro %}
 
@@ -22,30 +28,10 @@
   <fieldset class="fieldset-group js-add-another{% if error %} error{% endif %}" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
-        <div class="form-group form-group--compact">
-          <label class="form-label" for="{{ name }}-{{ loop.index }}">
-            {{ label }}
-            {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
-          </label>
-          <input class="form-control"
-                 id="{{ name }}-{{ loop.index }}"
-                 name="{{ name }}"
-                 type="text"
-                 value="{{ value }}" />
-        </div>
+        {{ textbox(name=name, label=label, value=value, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
       {% endfor %}
     {% else %}
-      <div class="form-group form-group--compact">
-        <label class="form-label" for="{{ name }}-1">
-          {{ label }}
-          {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
-        </label>
-        <input class="form-control"
-               id="{{ name }}-1"
-               name="{{ name }}"
-               type="text"
-               value="" />
-      </div>
+      {{ textbox(name=name, label=label, value=value, id="{{ name }}-1", class="form-group--compact", error=error) }}
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
@@ -55,40 +41,10 @@
   <fieldset class="fieldset-group js-add-another{% if error %} error{% endif %}" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
-        <div class="form-group form-group--compact{% if error %} error{% endif %}" id="{{ name }}-wrapper">
-          <label class="form-label" for="{{ name }}-{{ loop.index }}">
-            {{ label }}
-            {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
-          </label>
-          <select id="{{ name }}-{{ loop.index }}" class="form-control" name="{{ name }}">
-            {% if emptyLabel %}<option value="">{{ emptyLabel }}</option>{% endif %}
-            {% for option in options  %}
-              {% if option.label %}
-                <option value="{{ option.value }}" {% if option.value == value %}selected="selected"{% endif %}>{{ option.label }}</option>
-              {% else %}
-                <option value="{{ option }}" {% if option == value %}selected="selected"{% endif %}>{{ option }}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-        </div>
+        {{ dropdown(name=name, label=label, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
       {% endfor %}
     {% else %}
-      <div class="form-group form-group--compact{% if error %} error{% endif %}" id="{{ name }}-wrapper">
-        <label class="form-label" for="{{ name }}-1">
-          {{ label }}
-          {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
-        </label>
-        <select id="{{ name }}-1" class="form-control" name="{{ name }}">
-          {% if emptyLabel %}<option value="">{{ emptyLabel }}</option>{% endif %}
-          {% for option in options  %}
-            {% if option.label %}
-              <option value="{{ option.value }}" {% if option.value == value %}selected="selected"{% endif %}>{{ option.label }}</option>
-            {% else %}
-              <option value="{{ option }}" {% if option == value %}selected="selected"{% endif %}>{{ option }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
-      </div>
+      {{ dropdown(name=name, label=label, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-1", class="form-group--compact", error=error) }}
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
@@ -172,13 +128,16 @@
 
 {% endmacro %}
 
-{% macro dropdown(name, label, emptyLabel, value, options, error) %}
-  <div class="form-group{% if error %} error{% endif %}" id="{{ name }}-wrapper">
-    <label class="form-label" for="{{ name }}">
+{% macro dropdown(name, label, emptyLabel, value, options, id, class, error) %}
+  {% if not id %}
+    {% set id = name %}
+  {% endif %}
+  <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
+    <label class="form-label" for="{{ id }}">
       {{ label }}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
-    <select id="{{ name }}" class="form-control" name="{{ name }}">
+    <select id="{{ id }}" class="form-control" name="{{ name }}">
       {% if emptyLabel %}<option value="">{{ emptyLabel }}</option>{% endif %}
       {% for option in options  %}
         {% if option.label %}
@@ -216,17 +175,20 @@
   {% endif %}
 {% endmacro %}
 
-{% macro autocomplete(name, label, value, options, options_url, error) %}
-  <div class="form-group{% if error %} error{% endif %} autocomplete js-autocomplete" id="{{ name }}-wrapper">
-    <label class="form-label" for="{{ name }}">
+{% macro autocomplete(name, label, value, options, options_url, id, class, error) %}
+  {% if not id %}
+    {% set id = name %}
+  {% endif %}
+  <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
+    <label class="form-label" for="{{ id }}">
       {{ label }}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
 
     {% if options and options.length > 0 %}
       <input
-        id="{{ name }}"
-        class="form-control"
+        id="{{ id }}"
+        class="form-control autocomplete js-autocomplete"
         name="{{ name }}"
         value="{{ value }}"
         autocomplete="off"
@@ -234,8 +196,8 @@
       />
     {% else %}
       <input
-        id="{{ name }}"
-        class="form-control"
+        id="{{ id }}"
+        class="form-control autocomplete js-autocomplete"
         name="{{ name }}"
         value="{{ value }}"
         autocomplete="off"
@@ -243,4 +205,17 @@
       />
     {% endif %}
   </div>
+{% endmacro %}
+
+{% macro addAnotherAutocomplete(name, label, addLabel='', values=[], options, options_url, error) %}
+  <fieldset class="fieldset-group js-add-another{% if error %} error{% endif %}" id="{{ name }}-wrapper">
+    {% if values and values.length > 0 %}
+      {% for value in values %}
+        {{ autocomplete(name, label, value, options, options_url, id="{{ name }}-{{ loop.index }}", class="form-group--compact") }}
+      {% endfor %}
+    {% else %}
+      {{ autocomplete(name, label, value, options, options_url, id="{{ name }}-1", class="form-group--compact") }}
+    {% endif %}
+    <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
+  </fieldset>
 {% endmacro %}
