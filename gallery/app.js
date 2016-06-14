@@ -48,6 +48,7 @@ app.get('/', function(req, res) {
     job: 'Developer',
     jobDescription: 'Description',
     countryOfInterest: ['Country 1', 'Country 2'],
+    countryOptions: ['Country 1', 'Country 2', 'United Kingdom', 'Spain', 'France'],
     address: {
       address1: 'Address1',
       address2: 'Address2',
