@@ -35,8 +35,8 @@ class Autocomplete {
     this.$menu
       .insertAfter(this.$element)
       .css({
-        top: pos.top + pos.height
-        , left: pos.left
+        top: pos.top + pos.height,
+        left: pos.left
       })
       .show();
 

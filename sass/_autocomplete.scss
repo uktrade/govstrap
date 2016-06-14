@@ -1,6 +1,12 @@
+.form-group.autocomplete {
+  position: relative;
+}
+
 .autosuggest__suggestions {
   box-sizing: border-box;
   border: 1px solid $border-colour;
+  position: absolute;
+  z-index: 99;
 
   @include media(tablet) {
     width: 66%;
