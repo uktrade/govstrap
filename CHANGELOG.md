@@ -39,3 +39,7 @@ Move project to new repo.
 
 - Added ajax support to autocomplete control
 - Improved autocomplete styling so suggestions don't push the page down
+
+# 0.7.0
+
+- Added support for add another autocomplete
