@@ -3,7 +3,7 @@ const paths = require('./gulp/paths');
 
 module.exports = [
   {
-    devtool: 'hidden-source-map' ,
+    devtool: 'cheap-module-source-map' ,
     entry: {
       app: `${paths.sourceJS}/govstrap.js`
     },

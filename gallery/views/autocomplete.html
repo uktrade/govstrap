@@ -6,5 +6,12 @@
     error=errors.advisor
   ) }}
 
+  {{ forms.autocomplete('helper',
+    label="Helper",
+    value=helper,
+    error=errors.helper,
+    options_url="/lookup?query="
+  ) }}
+
   {{ forms.save(backUrl="#") }}
 </form>

@@ -8,13 +8,14 @@ class Autocomplete {
 
   constructor(element) {
     this.$element = $(element).find('input');
-    this.source = this.$element.data('options');
+    this.options = this.$element.data('options');
     this.shown = false;
     this.$menu = $('<ul class="autosuggest__suggestions"></ul>');
     this.item = '<li class="autosuggest__suggestion"><a href="#"></a></li>';
-    this.items = 8;
+    this.maxItems = 8;
     this.minLength = 1;
     this.listen();
+    this.optionsUrl = this.$element.data('options-url');
   }
 
   select() {
@@ -34,8 +35,8 @@ class Autocomplete {
     this.$menu
       .insertAfter(this.$element)
       .css({
-        top: pos.top + pos.height
-        , left: pos.left
+        top: pos.top + pos.height,
+        left: pos.left
       })
       .show();
 
@@ -50,20 +51,27 @@ class Autocomplete {
   }
 
   lookup() {
-    const items = this.source;
-    const query = this.query = this.$element.val();
+    const term = this.term = this.$element.val();
 
-    if (!this.query || this.query.length < this.minLength) {
+    if (this.optionsUrl && this.optionsUrl.length > 0) {
+      this.lookupAjax(term);
+    } else {
+      this.lookupLocal(term);
+    }
+  }
+
+  lookupLocal(term) {
+
+    if (!term || term.length < this.minLength) {
       return this.shown ? this.hide() : this;
     }
 
-    const matchingItems = items.filter((item) => {
-      return item.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-    });
+    let matchingItems = this.options.filter((item) => {
+      return item.toLowerCase().indexOf(term.toLowerCase()) !== -1;
+    }).sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
 
     if (matchingItems.length > 0) {
-      this.items = matchingItems.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
-      this.render().show();
+      this.render(matchingItems).show();
     } else {
       this.hide();
     }
@@ -71,25 +79,49 @@ class Autocomplete {
     return null;
   }
 
+  lookupAjax(term) {
+    const xmlhttp = new XMLHttpRequest();
+    const handleAjaxResult = this.handleAjaxResult;
+
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        const myArr = JSON.parse(xmlhttp.responseText);
+        handleAjaxResult(myArr);
+      }
+    };
+
+    xmlhttp.open('GET', `${this.optionsUrl}${term}`, true);
+    xmlhttp.send();
+  }
+
+  handleAjaxResult = (result) => {
+    if (result.length > 0) {
+      result = result.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
+      this.render(result).show();
+    } else {
+      this.hide();
+    }
+  };
+
   highlighter = (item) => {
-    const query = this.query.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
-    return item.replace(new RegExp('(' + query + ')', 'ig'), ($1, match) => {
+    const term = this.term.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
+    return item.replace(new RegExp('(' + term + ')', 'ig'), ($1, match) => {
       return '<strong>' + match + '</strong>';
     });
   };
 
-  render() {
-    let items = this.items;
+  render(items) {
+
     let itemMarkup = this.item;
     let highlighter = this.highlighter;
 
-    let suggestionElements = $(items).map((index, item) => {
+    let suggestionElements = items.slice(0, this.maxItems).map((item) => {
       let suggestionElement = $(itemMarkup).attr('data-value', item);
       suggestionElement.find('a').html(highlighter(item));
       return suggestionElement[0];
     });
 
-    suggestionElements.first().addClass(ACTIVECLASS);
+    suggestionElements[0].className += ' ' + ACTIVECLASS;
     this.$menu.html(suggestionElements);
     return this;
   }
