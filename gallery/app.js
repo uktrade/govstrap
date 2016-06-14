@@ -63,8 +63,30 @@ app.get('/', function(req, res) {
     SECTOR_OPTIONS: ['Automotive', 'Investment'],
     errors: {
       name: 'You must enter a name'
-    }
+    },
+    helper: 'John'
   });
+});
+
+app.get('/lookup', function(req, res) {
+  let items = ['George', 'Paul', 'John', 'Ringo'];
+  let term = req.query.query;
+
+  if (!term || term.length === 0) {
+    res.json([]);
+    return;
+  }
+
+  const matchingItems = items.filter((item) => {
+    return item.toLowerCase().indexOf(term.toLowerCase()) !== -1;
+  });
+
+  if (matchingItems.length > 0) {
+    items = matchingItems.sort((a, b) => { return a.toLowerCase().localeCompare(b.toLowerCase()); });
+    res.json(items);
+  } else {
+    res.json([]);
+  }
 });
 
 app.listen(config.port);

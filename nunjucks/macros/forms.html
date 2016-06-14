@@ -216,19 +216,31 @@
   {% endif %}
 {% endmacro %}
 
-{% macro autocomplete(name, label, value, options, error) %}
+{% macro autocomplete(name, label, value, options, options_url, error) %}
   <div class="form-group{% if error %} error{% endif %} autocomplete js-autocomplete" id="{{ name }}-wrapper">
     <label class="form-label" for="{{ name }}">
       {{ label }}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
-    <input
-      id="{{ name }}"
-      class="form-control"
-      name="{{ name }}"
-      value="{{ value }}"
-      autocomplete="off"
-      data-options="{{ options | attributeArray | safe }}"
-    />
+
+    {% if options and options.length > 0 %}
+      <input
+        id="{{ name }}"
+        class="form-control"
+        name="{{ name }}"
+        value="{{ value }}"
+        autocomplete="off"
+        data-options="{{ options | attributeArray | safe }}"
+      />
+    {% else %}
+      <input
+        id="{{ name }}"
+        class="form-control"
+        name="{{ name }}"
+        value="{{ value }}"
+        autocomplete="off"
+        data-options-url="{{ options_url }}"
+      />
+    {% endif %}
   </div>
 {% endmacro %}
