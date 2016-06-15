@@ -63,8 +63,11 @@ app.get('/', function(req, res) {
     sectors: ['Automotive'],
     SECTOR_OPTIONS: ['Automotive', 'Investment'],
     errors: {
-      name: 'You must enter a name'
+      name: 'You must enter a name',
+      dateError: 'You entered an invalid date'
     },
+    myDate: '25/12/2016',
+    badDate: '34/de/2015',
     helper: 'John'
   });
 });
