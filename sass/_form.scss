@@ -41,3 +41,8 @@
     margin-bottom: 3px;
   }
 }
+.form-group__radiohide.inline .block-label {
+  @include media(tablet) {
+    margin-bottom: 10px;
+  }
+}
