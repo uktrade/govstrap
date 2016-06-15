@@ -29,7 +29,13 @@ filter.newDate = function date(d) {
  * @return {string} date string as per the current gov.uk standard 09/12/1981 -> 09 December 1981
  */
 filter.formatDate = function(d, f) {
-  return moment(filter.newDate(d)).locale('en-gb').format(f ? f : 'LL');
+  const formatted = moment(filter.newDate(d)).locale('en-gb').format(f ? f : 'LL');
+
+  if (formatted === 'Invalid date') {
+    return '';
+  }
+
+  return formatted;
 };
 
 /**
