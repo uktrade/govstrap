@@ -1,6 +1,6 @@
 {
   "name": "govstrap",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Govstrap is a collection of layout templates and sass tools and used as the front end toolkit for UKTI web services",
   "main": "dist/index.js",
   "repository": {

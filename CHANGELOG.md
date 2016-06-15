@@ -43,3 +43,7 @@ Move project to new repo.
 # 0.7.0
 
 - Added support for add another autocomplete
+
+# 0.7.1
+
+- Fix spacing in radio hide control
