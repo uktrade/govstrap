@@ -47,3 +47,7 @@ Move project to new repo.
 # 0.7.1
 
 - Fix spacing in radio hide control
+
+# 0.8.0
+
+- Added date control
