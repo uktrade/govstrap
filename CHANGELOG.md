@@ -51,3 +51,7 @@ Move project to new repo.
 # 0.8.0
 
 - Added date control
+
+# 0.8.1
+
+- Modified date control to display bad values

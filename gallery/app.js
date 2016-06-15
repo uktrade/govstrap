@@ -66,8 +66,8 @@ app.get('/', function(req, res) {
       name: 'You must enter a name',
       dateError: 'You entered an invalid date'
     },
-    myDate: '25/12/2016',
-    badDate: '34/de/2015',
+    myDate: '2/12/2016',
+    badDate: '34/de/',
     helper: 'John'
   });
 });

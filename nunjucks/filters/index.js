@@ -110,4 +110,19 @@ filter.versionAssetUrl = function(asset) {
   return `${asset}?${pkgJson.version}`;
 };
 
+filter.splitPart = function(value, seperator, part) {
+
+  if (!value || value.length === 0) {
+    return '';
+  }
+
+  let array = value.split('/');
+
+  if (array && array.length < part) {
+    return '';
+  }
+
+  return array[part];
+};
+
 module.exports = filter;

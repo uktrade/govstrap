@@ -36,7 +36,7 @@
                id="asset_valuationDate_day"
                class="form-control"
                name="{{ name }}_day"
-               value="{{ value | formatDate('DD') }}"
+               value="{{ value | splitPart('/', 0) }}"
                maxlength="2" />
       </div>
 
@@ -48,7 +48,7 @@
                id="asset_valuationDate_month"
                class="form-control"
                name="{{ name }}_month"
-               value="{{ value | formatDate('MM') }}"
+               value="{{ value | splitPart('/', 1) }}"
                maxlength="2" />
       </div>
 
@@ -60,7 +60,7 @@
                id="asset_valuationDate_year"
                class="form-control"
                name="{{ name }}_year"
-               value="{{ value | formatDate('YYYY') }}"
+               value="{{ value | splitPart('/', 2) }}"
                maxlength="4" />
       </div>
     </fieldset>
