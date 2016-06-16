@@ -86,6 +86,10 @@ filter.highlight = function highlight(text, phrase) {
 
 filter.attributeArray = function attributeArray(list) {
 
+  if (typeof list === 'object') {
+    return filter.attributeObject(list);
+  }
+
   let result = '[';
 
   for (var iPos = 0; iPos < list.length -1; iPos += 1) {
@@ -123,6 +127,17 @@ filter.splitPart = function(value, seperator, part) {
   }
 
   return array[part];
+};
+
+filter.attributeObject = function(myObject) {
+  let result = '{';
+
+  for (var key in myObject) {
+    result += `&#34;${key}&#34;:&#34;${myObject[key]}&#34;,`;
+  }
+
+  result = result.substr(0, result.length -1) + '}';
+  return result;
 };
 
 module.exports = filter;
