@@ -28,10 +28,15 @@ class Autocomplete {
     this.displayField.insertAfter(this.sourceField);
     this.sourceField.hide();
 
+    let value;
+
     // Display the value if the list if an object.
-    if (this.options && typeof this.options === 'object') {
-      this.displayField.val(this.options[this.sourceField.val()]);
+    if (this.options && !Array.isArray(this.options)) {
+      value = this.options[this.sourceField.val()];
+    } else {
+      value = this.sourceField.val();
     }
+    this.displayField.val(value);
   }
 
   select() {

@@ -59,3 +59,7 @@ Move project to new repo.
 # 0.9.0
 
 - Added support for ID fields in autocomplete
+
+# 0.9.1
+
+- Fix big with pre populated autocomplete

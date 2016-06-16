@@ -86,7 +86,7 @@ filter.highlight = function highlight(text, phrase) {
 
 filter.attributeArray = function attributeArray(list) {
 
-  if (typeof list === 'object') {
+  if (!Array.isArray(list)) {
     return filter.attributeObject(list);
   }
 
