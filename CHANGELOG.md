@@ -55,3 +55,7 @@ Move project to new repo.
 # 0.8.1
 
 - Modified date control to display bad values
+
+# 0.9.0
+
+- Added support for ID fields in autocomplete
