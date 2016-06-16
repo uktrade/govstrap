@@ -68,7 +68,13 @@ app.get('/', function(req, res) {
     },
     myDate: '2/12/2016',
     badDate: '34/de/',
-    helper: 'John'
+    helper: 'John',
+    interactionContactId: "A13",
+    contacts: {
+      "A13": "Fred Smith",
+      "B43": "Jane Doe",
+      "C51": "Dan Richardson"
+    }
   });
 });
 

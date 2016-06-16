@@ -22,6 +22,14 @@
   ) }}
 
 
+  {{ forms.autocomplete('interactionContactId',
+    label="Contact",
+    value=interactionContactId,
+    options=contacts,
+    error=error.interactionContactId
+  ) }}
+
+
 
   {{ forms.save(backUrl="#") }}
 </form>
