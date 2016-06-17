@@ -310,6 +310,7 @@ class Autocomplete {
   };
 
   blur = () => {
+    console.log('blur');
     this.focused = false;
     if (!this.mousedover && this.shown) this.hide();
   };

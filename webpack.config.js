@@ -68,4 +68,32 @@ module.exports = [
         sourceMap: false }),
       new webpack.optimize.DedupePlugin()
     ]
+  },
+  {
+    devtool: 'cheap-module-source-map' ,
+    entry: {
+      autocompletetests: `${paths.testJS}/autocompletetests.js`
+    },
+    output: {
+      path: `${paths.testJS}/build`,
+      filename: '[name].js'
+    },
+    module: {
+      loaders: [{
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loaders: ['babel-loader']
+      }]
+    },
+    resolve: {
+      extensions: ['', '.js'],
+      modules: [
+        paths.sourceJS,
+        paths.testJS,
+        paths.libJS,
+        'node_modules'
+      ]
+    },
+
+    plugins: [new webpack.optimize.DedupePlugin()]
   }];

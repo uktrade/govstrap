@@ -1,0 +1,41 @@
+{% extends "layout/testlayout.html" %}
+{% import "macros/forms.html" as forms %}
+
+
+{% block main %}
+  <div id="template">
+    <div id="array-template">
+      <form>
+        {{ forms.autocomplete('advisor',
+          label="Advisor",
+          value=advisor,
+          options=advisors,
+          error=errors.advisor
+        ) }}
+      </form>
+    </div>
+    <div id="object-template">
+      <form>
+        {{ forms.autocomplete('contact',
+          label="contact",
+          value="",
+          options=contacts,
+          error=errors.contact
+        ) }}
+      </form>
+    </div>
+    <div id="ajax-template">
+      <form>
+        {{ forms.autocomplete('helper',
+          label="Helper",
+          value='',
+          error=errors.helper,
+          options_url="/lookup?query="
+        ) }}
+      </form>
+    </div>
+  </div>
+
+  <div id="main"></div>
+
+{% endblock %}
