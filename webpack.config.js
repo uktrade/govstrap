@@ -26,7 +26,7 @@ module.exports = [
         'node_modules'
       ]
     },
-  
+
     plugins: [new webpack.optimize.DedupePlugin()]
   },
   {
@@ -72,7 +72,8 @@ module.exports = [
   {
     devtool: 'cheap-module-source-map' ,
     entry: {
-      autocompletetests: `${paths.testJS}/autocompletetests.js`
+      autocompletetests: `${paths.testJS}/autocompletetests.js`,
+      addresstests: `${paths.testJS}/addresstests.js`
     },
     output: {
       path: `${paths.testJS}/build`,

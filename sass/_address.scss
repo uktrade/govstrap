@@ -1,0 +1,49 @@
+.fieldset--address {
+  display: table;
+
+  .form-group {
+    display: table-row;
+
+    .form-label {
+      display: table-cell;
+      float: left;
+      width: 30%;
+      box-sizing: border-box;
+    }
+
+    .form-control {
+      display: table-cell;
+      float: left;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    &.form-group--postcode .form-control {
+      width: 30%;
+    }
+
+  }
+
+  .address__lookup-wrapper {
+
+    .form-group .form-control {
+      width: 25%;
+    }
+
+    .button {
+      @include core-16();
+      margin-left: 5px;
+
+      background-color: $grey-2;
+      color: $black;
+    }
+  }
+
+  .reveal-manual-entry {
+    display: block;
+    margin-left: 30%;
+    margin-bottom: 20px;
+  }
+}
+
+
