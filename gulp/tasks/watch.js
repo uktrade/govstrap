@@ -8,6 +8,7 @@ gulp.task('watch', (done) => {
     gulp.watch(`${paths.sourceJS}/**/*.js`, ['webpack']);
     gulp.watch(`${paths.sourceStyles}/**/*.scss`, ['css']);
     gulp.watch(`${paths.sassLib}/**/*.scss`, ['css']);
+    gulp.watch(`${paths.testJS}/*.js`, ['webpack']);
     done();
   });
 

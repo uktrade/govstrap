@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const nunjucks = require('express-nunjucks');
-const filters = require('../nunjucks/filters/index');
+const filters = require('./nunjucks/filters/index');
 const config = require('./config');
 const path = require('path');
 const compression = require('compression');
@@ -20,6 +20,7 @@ app.use(compression());
 app.set('view engine', 'html');
 app.set('views', [
   path.resolve('./gallery/views'),
+  path.resolve('./test'),
   path.resolve('./node_modules/govuk_template_jinja/views'),
   path.resolve('./nunjucks')
 ]);
@@ -37,45 +38,48 @@ app.use('/images', express.static(path.resolve('./images')));
 app.use('/images', express.static(path.resolve('./node_modules/govuk_frontend_toolkit/images')));
 app.use('/fonts', express.static(path.resolve('./node_modules/govuk_template_mustache/assets/stylesheets')));
 app.use(express.static(path.resolve('./public')));
+app.use(express.static(path.resolve('./tests')));
+app.use(express.static(path.resolve('./node_modules')));
 app.use(express.static(path.resolve('./node_modules/govuk_template_jinja/assets')));
 
+let fakeData = {
+  subject: 'test subject',
+  asset_path: '/',
+  name: 'Fred Smith',
+  job: 'Developer',
+  jobDescription: 'Description',
+  countryOfInterest: ['Country 1', 'Country 2'],
+  countryOptions: ['Country 1', 'Country 2', 'United Kingdom', 'Spain', 'France'],
+  address: {
+    address1: 'Address1',
+    address2: 'Address2',
+    city: 'City',
+    postcode: 'SL4 4QR'
+  },
+  primaryContact: true,
+  hasManager: false,
+  accountManager: 'George Clooney',
+  advisor: 'Paul',
+  advisors: ['George', 'Paul', 'John', 'Ringo'],
+  sectors: ['Automotive'],
+  SECTOR_OPTIONS: ['Automotive', 'Investment'],
+  errors: {
+    name: 'You must enter a name',
+    dateError: 'You entered an invalid date'
+  },
+  myDate: '2/12/2016',
+  badDate: '34/de/',
+  helper: 'John',
+  interactionContactId: "A13",
+  contacts: {
+    "A13": "Fred Smith",
+    "B43": "Jane Doe",
+    "C51": "Dan Richardson"
+  }
+};
 
 app.get('/', function(req, res) {
-  res.render('index', {
-    subject: 'test subject',
-    asset_path: '/',
-    name: 'Fred Smith',
-    job: 'Developer',
-    jobDescription: 'Description',
-    countryOfInterest: ['Country 1', 'Country 2'],
-    countryOptions: ['Country 1', 'Country 2', 'United Kingdom', 'Spain', 'France'],
-    address: {
-      address1: 'Address1',
-      address2: 'Address2',
-      city: 'City',
-      postcode: 'SL4 4QR'
-    },
-    primaryContact: true,
-    hasManager: false,
-    accountManager: 'George Clooney',
-    advisor: 'Paul',
-    advisors: ['George', 'Paul', 'John', 'Ringo'],
-    sectors: ['Automotive'],
-    SECTOR_OPTIONS: ['Automotive', 'Investment'],
-    errors: {
-      name: 'You must enter a name',
-      dateError: 'You entered an invalid date'
-    },
-    myDate: '2/12/2016',
-    badDate: '34/de/',
-    helper: 'John',
-    interactionContactId: "A13",
-    contacts: {
-      "A13": "Fred Smith",
-      "B43": "Jane Doe",
-      "C51": "Dan Richardson"
-    }
-  });
+  res.render('index', fakeData);
 });
 
 app.get('/lookup', function(req, res) {
@@ -97,6 +101,13 @@ app.get('/lookup', function(req, res) {
   } else {
     res.json([]);
   }
+});
+
+
+app.use('/test/js/', express.static(path.resolve('./test/build')));
+app.get('/test/:name?', function(req, res) {
+  fakeData.testName = req.params.name;
+  res.render('autocompletetests', fakeData);
 });
 
 app.listen(config.port);

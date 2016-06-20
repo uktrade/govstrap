@@ -8,6 +8,7 @@ module.exports = {
   outputJS: `${projectDir}/public/javascripts`,
   sourceStyles: `${projectDir}/sass`,
   sourceJS: `${projectDir}/javascripts`,
+  testJS: `${projectDir}/test`,
   webpackConfig: `${projectDir}/webpack.config.js`,
   node_modules: `${projectDir}/node_modules`
 };
