@@ -63,3 +63,7 @@ Move project to new repo.
 # 0.9.1
 
 - Fix big with pre populated autocomplete
+
+# 0.10.0
+
+- New smart address component
