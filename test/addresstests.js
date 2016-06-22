@@ -46,7 +46,7 @@ describe('Address', function() {
 
     beforeEach(() => {
       mainElement.html(templateElement.find('#not-populated').html());
-      new AddressControl(mainElement.find('form'));
+      new AddressControl(mainElement.find('.js-address'));
       this.xhr = sinon.useFakeXMLHttpRequest();
 
       this.requests = [];
@@ -233,7 +233,7 @@ describe('Address', function() {
   describe('prepopulated address', () => {
     beforeEach(() => {
       mainElement.html(templateElement.find('#populated').html());
-      new AddressControl(mainElement.find('form'));
+      new AddressControl(mainElement.find('.js-address'));
       this.xhr = sinon.useFakeXMLHttpRequest();
 
       this.requests = [];
@@ -254,7 +254,7 @@ describe('Address', function() {
     it('should not show the manual button', () => {
       expect(mainElement.find('.reveal-manual-entry:visible').length).to.eq(0);
     });
-    it('should show the address deails', () => {
+    it('should show the address details', () => {
       expect(mainElement.find('[name="operatingAddress.address1"]:visible').val()).to.eq('Address1');
       expect(mainElement.find('[name="operatingAddress.address2"]:visible').val()).to.eq('Address2');
       expect(mainElement.find('[name="operatingAddress.city"]:visible').val()).to.eq('City');

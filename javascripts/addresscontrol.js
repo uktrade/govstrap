@@ -8,7 +8,7 @@ export default class AddressControl {
 
   constructor(element, postcodeUrl='/postcodelookup/') {
     this.postcodeUrl = postcodeUrl;
-    this.element = element;
+    this.element = $(element);
     this.setInitialState();
     this.setInitialView();
     this.updateVisibility();
@@ -50,7 +50,7 @@ export default class AddressControl {
 
   setInitialState () {
 
-    this.name = this.element.find('fieldset').attr('data-name');
+    this.name = this.element.attr('data-name');
 
     this.address1Input = this.element.find(`[name="${this.name}.address1"]`);
     this.address2Input = this.element.find(`[name="${this.name}.address2"]`);
