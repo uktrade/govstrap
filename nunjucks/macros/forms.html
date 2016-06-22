@@ -1,6 +1,6 @@
 {% macro textbox(name, label, value='', id, class, error) %}
   {% if not id %}
-    {% set id = name %}
+    {% set id = name.replace('.','-') %}
   {% endif %}
   <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
     <label class="form-label" for="{{ id }}">
@@ -13,7 +13,7 @@
 
 {% macro textarea(name, label, value='', id, class, error) %}
   {% if not id %}
-    {% set id = name %}
+    {% set id = name.replace('.','-') %}
   {% endif %}
   <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
     <label class="form-label" for="{{ id }}">
@@ -93,22 +93,6 @@
   </fieldset>
 {% endmacro %}
 
-{% macro address(name, label, value, error) %}
-  <div class="form-group{% if error %} error{% endif %}" id="{{ name }}_address1-wrapper">
-    <label class="form-label" for="{{ name }}_address1">
-      {{ label }}
-      {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
-    </label>
-    <label class="form-label hidden" for="{{ name }}_address2">Address 2</label>
-    <label class="form-label hidden" for="{{ name }}_city">City</label>
-    <label class="form-label hidden" for="{{ name }}_postcode">Postcode</label>
-    <input id="{{ name }}_address1" class="form-control" name="{{ name }}_address1" value="{{ value.address1 }}" />
-    <input id="{{ name }}_address2" class="form-control" name="{{ name }}_address2" value="{{ value.address2 }}" />
-    <input id="{{ name }}_city" class="form-control" name="{{ name }}_city" value="{{ value.city }}" />
-    <input id="{{ name }}_postcode" class="form-control" name="{{ name }}_postcode" value="{{ value.postcode }}" />
-  </div>
-{% endmacro %}
-
 {% macro yesNo(name, label, radioValue='no', error) %}
   <fieldset class="inline form-group form-group__checkbox-group" id="{{ name }}-wrapper">
 
@@ -173,7 +157,7 @@
 
 {% macro dropdown(name, label, emptyLabel, value, options, id, class, error) %}
   {% if not id %}
-    {% set id = name %}
+    {% set id = name.replace('.','-') %}
   {% endif %}
   <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
     <label class="form-label" for="{{ id }}">
@@ -220,7 +204,7 @@
 
 {% macro autocomplete(name, label, value, options, options_url, id, class, error) %}
   {% if not id %}
-    {% set id = name %}
+    {% set id = name.replace('.','-') %}
   {% endif %}
   <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
     <label class="form-label" for="{{ id }}">
@@ -261,4 +245,16 @@
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
+{% endmacro %}
+
+{% macro address(name, value, error) %}
+  <fieldset class="js-address fieldset--address" data-name="{{name}}" >
+    {{ textbox(name + '.country', label='Country', value=value.country, class="form-group--compact") }}
+    {{ textbox(name + '.address1', label='Building and street', value=value.address1, class="form-group--compact") }}
+    {{ textbox(name + '.address2', label='', value=value.address2, class="form-group--compact") }}
+    {{ textbox(name + '.city', label='Town or city', value=value.city, class="form-group--compact") }}
+    {{ textbox(name + '.county', label='County (optional)', value=value.county, class="form-group--compact") }}
+    {{ textbox(name + '.postcode', label='Postcode', value=value.postcode, class="form-group--compact form-group--postcode") }}
+  </fieldset>
+
 {% endmacro %}

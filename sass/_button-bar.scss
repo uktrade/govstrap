@@ -24,3 +24,10 @@
   position: relative;
 }
 
+.button-secondary {
+  &:link,
+  &:visited {
+    background-color: $grey-2;
+    color: $black;
+  }
+}

@@ -1,0 +1,32 @@
+{% extends "layout/testlayout.html" %}
+{% import "macros/forms.html" as forms %}
+
+
+{% block main %}
+  <main id="content" style="margin-top: 100px;">
+    <div id="template">
+      <div id="populated">
+        <form>
+          {{ forms.address('operatingAddress',
+            value=address,
+            error=errors.address
+          ) }}
+        </form>
+      </div>
+      <div id="not-populated">
+        <form>
+          {{ forms.address('operatingAddress', error=errors.address) }}
+        </form>
+      </div>
+      <div id="hidden-panel">
+        <form>
+          <div class="js-radiohide-content">
+            {{ forms.address('operatingAddress', error=errors.address) }}
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="main"></div>
+  </main>
+{% endblock %}

@@ -6,9 +6,9 @@ const ACTIVECLASS = 'autosuggest__suggestion--active';
 
 class Autocomplete {
 
-  constructor(element) {
+  constructor(element, options) {
     this.sourceField = $(element);
-    this.options = this.sourceField.data('options');
+    this.options = options || this.sourceField.data('options');
     this.setupDisplayField();
     this.shown = false;
     this.$menu = $('<ul class="autosuggest__suggestions"></ul>');
@@ -20,6 +20,7 @@ class Autocomplete {
     this.sourceField.parent().css({
       position: 'relative'
     });
+    this.displayField.attr('autocomplete','off');
   }
 
   setupDisplayField() {
@@ -310,7 +311,6 @@ class Autocomplete {
   };
 
   blur = () => {
-    console.log('blur');
     this.focused = false;
     if (!this.mousedover && this.shown) this.hide();
   };

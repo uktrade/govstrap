@@ -2,8 +2,10 @@
 $gt-big-phone: '>414px';
 
 // application specific
+@import 'address';
 @import 'autocomplete';
-@import 'button-bar.scss';
+@import 'button-bar';
+@import 'error';
 @import 'lined-list';
 @import 'form';
 @import 'horizontal-tabs';

@@ -8,7 +8,7 @@ import SearchBar from './searchbar';
 import SelectionButton from './selectionbutton';
 import Tabs from './tabs';
 import Autocomplete from './autocomplete';
-
+import AddressControl from './addresscontrol';
 
 $('.js-add-another').each((index, element) => {
   new AddAnother(element);
@@ -35,4 +35,8 @@ new Tabs('.js-tabs');
 
 $('.js-autocomplete').each((index, element) => {
   new Autocomplete(element);
+});
+
+$('.js-address').each((index, element) => {
+  new AddressControl(element);
 });

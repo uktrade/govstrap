@@ -8,11 +8,6 @@
     margin-top: em(5);
   }
 
-  + .form-control {
-    display: block;
-    margin-top: em(10);
-  }
-
   @include media(tablet) {
     width: 66%;
   }

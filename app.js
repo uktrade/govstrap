@@ -54,7 +54,9 @@ let fakeData = {
     address1: 'Address1',
     address2: 'Address2',
     city: 'City',
-    postcode: 'SL4 4QR'
+    county: 'Berkshire',
+    postcode: 'postcode',
+    country: 'United Kingdom'
   },
   primaryContact: true,
   hasManager: false,
@@ -77,6 +79,25 @@ let fakeData = {
     "C51": "Dan Richardson"
   }
 };
+let fakePostcodeLookup = [{
+  address1: "Annexe Blackthorn Cottage",
+  address2: "Chawridge Lane",
+  city: "Windsor",
+  county: "Berkshire",
+  postcode: "sl4 4qr"
+  },{
+  address1: "Blackthorn Cottage",
+  address2: "Chawridge Lane",
+  city: "Windsor",
+  county: "Berkshire",
+  postcode: "sl4 4qr"
+  }, {
+  address1: "Chawridge Manor Farm",
+  address2: "Chawridge Lane",
+  city: "Windsor",
+  county: "Berkshire",
+  postcode: "sl4 4qr"
+}];
 
 app.get('/', function(req, res) {
   res.render('index', fakeData);
@@ -107,7 +128,11 @@ app.get('/lookup', function(req, res) {
 app.use('/test/js/', express.static(path.resolve('./test/build')));
 app.get('/test/:name?', function(req, res) {
   fakeData.testName = req.params.name;
-  res.render('autocompletetests', fakeData);
+  res.render(req.params.name + 'tests', fakeData);
 });
+app.get('/postcodelookup/:postcode', (req, res) => {
+  res.json(fakePostcodeLookup);
+});
+
 
 app.listen(config.port);
