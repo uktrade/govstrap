@@ -58,7 +58,7 @@ export default class AddressControl {
     this.addressCountyInput = this.element.find(`[name="${this.name}.county"]`);
     this.addressPostcodeInput = this.element.find(`[name="${this.name}.postcode"]`);
     this.addressCountryInput = this.element.find(`[name="${this.name}.country"]`);
-
+    this.errors = {};
     this.forceManualEntry = false;
   }
 
@@ -108,6 +108,8 @@ export default class AddressControl {
 
     // when an address is selected
     this.addressDropdown.on('change', $.proxy(this.postcodeSelect, this));
+
+    this.element.parent('form').on('submit', $.proxy(this.validate, this))
   }
 
   postcodeLookup(event) {
@@ -180,6 +182,60 @@ export default class AddressControl {
     event.preventDefault();
     this.forceManualEntry = true;
     this.updateVisibility();
+  }
+
+  validate() {
+    this.errors = {};
+
+    if (!this.addressCountryInput.val() || this.addressCountryInput.val().length === 0) {
+      this.errors.country = {
+        message: "Invalid or missing country",
+        field: this.addressCountryInput
+      };
+    }
+
+    if (!this.address1Input.val() || this.address1Input.val().length === 0) {
+      this.errors.address1 = {
+        message: "Address incomplete",
+        field: this.address1Input
+      };
+    }
+
+    if (!this.addressCityInput.val() || this.addressCityInput.val().length === 0) {
+      this.errors.city = {
+        message: "Address incomplete",
+        field: this.addressCityInput
+      };
+    }
+
+    let keys = Object.keys(this.errors);
+    let contentWrapper = this.element.closest('.js-radiohide-content');
+    let errorElement;
+    if (contentWrapper.length > 0) {
+      errorElement = contentWrapper;
+    } else {
+      errorElement = this.element;
+    }
+
+    if (keys.length > 0) {
+      errorElement.addClass('incomplete');
+
+      $('<span class="error-message">The address supplied is incomplete</span>')
+        .insertBefore(this.addressCountryInput.parent());
+
+      for (let key of keys) {
+        let error = this.errors[key];
+        error.field.parent().addClass('form-group--incomplete');
+      }
+
+      return false;
+    } else {
+      this.element.find('.error-message').remove();
+      this.element.find('.form-group--incomplete').removeClass('form-group--incomplete');
+      errorElement.removeClass('incomplete');
+      return true;
+    }
+
   }
 
 }

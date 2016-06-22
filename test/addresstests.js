@@ -264,4 +264,109 @@ describe('Address', function() {
 
   });
 
+  describe('Error handling', () => {
+
+    describe('server errors', () => {
+
+    });
+
+    describe('validate on submit', () => {
+
+      let addressControl;
+      let form;
+      let validateSpy;
+
+      beforeEach(() => {
+        mainElement.html(templateElement.find('#not-populated').html());
+
+        validateSpy = sinon.spy(AddressControl.prototype, 'validate');
+        addressControl = new AddressControl(mainElement.find('.js-address'));
+        this.xhr = sinon.useFakeXMLHttpRequest();
+
+        this.requests = [];
+        this.xhr.onCreate = function(xhr) {
+          this.requests.push(xhr);
+        }.bind(this);
+
+        form = mainElement.find('form');
+        form.on('submit', (event) => {
+          event.preventDefault();
+        });
+      });
+
+      afterEach(() => {
+        this.xhr.restore();
+        validateSpy.restore();
+      });
+
+
+      it('should validate when the form is submitted', () => {
+        form.submit();
+        expect(addressControl.validate.callCount).to.eq(1);
+      });
+      it('should require address1 and city at least.', () => {
+        addressControl.validate();
+        let errors = addressControl.errors;
+        expect(errors).to.have.property('address1');
+        expect(errors).to.have.property('city');
+        expect(errors).to.have.property('country');
+
+      });
+      it('should not have errors if required fields have values.', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('United Kingdom').change();
+        mainElement.find('[name="operatingAddress.address1"]').val('address1').change();
+        mainElement.find('[name="operatingAddress.city"]').val('city').change();
+        addressControl.validate();
+        let keys = Object.keys(addressControl.errors);
+        expect(keys.length).to.eq(0);
+      });
+      it('should mark the whole address section as having an error with a red left border if not in a hidden section', () => {
+        addressControl.validate();
+        expect(mainElement.find('fieldset.incomplete').length).to.eq(1);
+      });
+      it('should clear the error on the section when an error is corrected.', () => {
+        addressControl.validate();
+        mainElement.find('[name="operatingAddress.country"]').val('United Kingdom').change();
+        mainElement.find('[name="operatingAddress.address1"]').val('address1').change();
+        mainElement.find('[name="operatingAddress.city"]').val('city').change();
+        addressControl.validate();
+        expect(mainElement.find('fieldset.error').length).to.eq(0);
+      });
+      it('should mark the outer section a having an error if it is within a hidden section', () => {
+        mainElement.html(templateElement.find('#hidden-panel').html());
+        addressControl = new AddressControl(mainElement.find('.js-address'));
+        addressControl.validate();
+        expect(mainElement.find('.js-radiohide-content.incomplete').length).to.eq(1);
+        expect(mainElement.find('fieldset.incomplete').length).to.eq(0);
+      });
+      
+      it('should show an error description at the top of the section if there is an error', () => {
+        addressControl.validate();
+
+        let errorMessageElement = mainElement.find('.error-message');
+
+        expect(errorMessageElement.length).to.eq(1);
+        expect(errorMessageElement.text()).to.eq('The address supplied is incomplete');
+
+      });
+      it('should only highlight fields that have issues', () => {
+        addressControl.validate();
+        expect(mainElement.find('.form-group--incomplete').length).to.eq(3);
+      });
+      it('should clear issues from fields once they have been corrected.', () => {
+        addressControl.validate();
+        expect(mainElement.find('.form-group--incomplete').length).to.eq(3);
+        mainElement.find('[name="operatingAddress.country"]').val('United Kingdom').change();
+        mainElement.find('[name="operatingAddress.address1"]').val('address1').change();
+        mainElement.find('[name="operatingAddress.city"]').val('city').change();
+        addressControl.validate();
+        expect(mainElement.find('.form-group--incomplete').length).to.eq(0);
+      });
+
+    });
+
+
+
+  });
+
 });

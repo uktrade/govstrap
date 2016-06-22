@@ -30,6 +30,10 @@
       width: 25%;
     }
 
+    .form-group select.form-control {
+      width: 50%;
+    }
+
     .button {
       @include core-16();
       margin-left: 5px;
