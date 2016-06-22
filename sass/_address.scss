@@ -12,16 +12,29 @@
     }
 
     .form-control {
+      box-sizing: border-box;
       display: table-cell;
       float: left;
-      width: 50%;
-      box-sizing: border-box;
+      width: 70%;
+
+      @include media(tablet) {
+        width: 50%;
+      }
+
     }
 
     &.form-group--postcode .form-control {
-      width: 30%;
+      width: 25%;
     }
 
+  }
+
+  .autosuggest__suggestions {
+    width: 70%;
+
+    @include media(tablet) {
+      width: 50%;
+    }
   }
 
   .address__lookup-wrapper {
@@ -31,15 +44,24 @@
     }
 
     .form-group select.form-control {
-      width: 50%;
+      width: 70%;
+
+      @include media(tablet) {
+        width: 50%;
+      }
     }
 
     .button {
       @include core-16();
-      margin-left: 5px;
-
       background-color: $grey-2;
       color: $black;
+      margin: 0 0 0 5px;
+      width: 42%;
+
+      @include media(tablet) {
+        margin: 0 0 0 5px;
+        width: 25%;
+      }
     }
   }
 

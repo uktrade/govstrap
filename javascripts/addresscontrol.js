@@ -109,7 +109,7 @@ export default class AddressControl {
     // when an address is selected
     this.addressDropdown.on('change', $.proxy(this.postcodeSelect, this));
 
-    this.element.parent('form').on('submit', $.proxy(this.validate, this))
+    this.element.closest('form').on('submit', $.proxy(this.validate, this))
   }
 
   postcodeLookup(event) {
