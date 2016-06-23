@@ -67,3 +67,8 @@ Move project to new repo.
 # 0.10.0
 
 - New smart address component
+
+# 0.11.0
+
+- Allow yes no radio buttons to hide on Yes
+- Allow address fields to be optional for none uk address.
