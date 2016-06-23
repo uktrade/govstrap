@@ -248,8 +248,8 @@
   </fieldset>
 {% endmacro %}
 
-{% macro address(name, value, error) %}
-  <fieldset class="js-address fieldset--address" data-name="{{name}}" >
+{% macro address(name, value, optionalNonUk='no', error) %}
+  <fieldset class="js-address fieldset--address" data-name="{{name}}" data-optional-non-uk="{{ optionalNonUk }}">
     {{ textbox(name + '.country', label='Country', value=value.country, class="form-group--compact") }}
     {{ textbox(name + '.address1', label='Building and street', value=value.address1, class="form-group--compact") }}
     {{ textbox(name + '.address2', label='', value=value.address2, class="form-group--compact") }}

@@ -369,4 +369,93 @@ describe('Address', function() {
 
   });
 
+  describe('Optional non-uk address handling', () => {
+
+    describe('optional', () => {
+
+      let addressControl;
+
+      beforeEach(() => {
+        mainElement.html(templateElement.find('#not-required').html());
+        addressControl = new AddressControl(mainElement.find('.js-address'));
+        this.xhr = sinon.useFakeXMLHttpRequest();
+
+        this.requests = [];
+        this.xhr.onCreate = function(xhr) {
+          this.requests.push(xhr);
+        }.bind(this);
+      });
+
+      afterEach(() => {
+        this.xhr.restore();
+      });
+
+      it('should not show label saying "address details optional" if no country', () => {
+        expect(mainElement.find('.optional-nonuk-label:visible').length).to.eq(0);
+      });
+      it('should not show label saying "address details optional" if UK', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('United Kingdom').change();
+        expect(mainElement.find('.optional-nonuk-label:visible').length).to.eq(0);
+      });
+      it('should show a label saying "address details optional" if none uk', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('Spain').change();
+        expect(mainElement.find('.optional-nonuk-label:visible').length).to.eq(1);
+      });
+      it('should not throw a validation error when country is none uk and address missing', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('Spain').change();
+        let answer = addressControl.validate();
+        expect(answer).to.eq(true);
+        expect(Object.keys(addressControl.errors).length).to.eq(0);
+      });
+      it('should throw a validation error when country is uk and address missing', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('United Kingdom').change();
+        let answer = addressControl.validate();
+        expect(answer).to.eq(false);
+        expect(Object.keys(addressControl.errors).length).to.eq(2);
+      });
+    });
+
+    describe('not optional', () => {
+      let addressControl;
+
+      beforeEach(() => {
+        mainElement.html(templateElement.find('#not-populated').html());
+        addressControl = new AddressControl(mainElement.find('.js-address'));
+        this.xhr = sinon.useFakeXMLHttpRequest();
+
+        this.requests = [];
+        this.xhr.onCreate = function(xhr) {
+          this.requests.push(xhr);
+        }.bind(this);
+      });
+
+      afterEach(() => {
+        this.xhr.restore();
+      });
+
+      it('should not show a label saying "address details optional" if none uk', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('Spain').change();
+        expect(mainElement.find('.optional-nonuk-label:visible').length).to.eq(0);
+      });
+      it('should not show label saying "address details optional" if UK', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('United Kingdom').change();
+        expect(mainElement.find('.optional-nonuk-label:visible').length).to.eq(0);
+      });
+      it('should throw a validation error when country is none uk and address missing', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('Spain').change();
+        let answer = addressControl.validate();
+        expect(answer).to.eq(false);
+        expect(Object.keys(addressControl.errors).length).to.eq(2);
+      });
+      it('should throw a validation error when country is uk and address missing', () => {
+        mainElement.find('[name="operatingAddress.country"]').val('United Kingdom').change();
+        let answer = addressControl.validate();
+        expect(answer).to.eq(false);
+        expect(Object.keys(addressControl.errors).length).to.eq(2);
+      });
+    });
+
+
+  });
+
 });

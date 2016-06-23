@@ -46,6 +46,10 @@ export default class AddressControl {
     this.revealManualEntryLink = this.lookupSection.find('.reveal-manual-entry');
 
     this.addressDropdown = this.addressPickerWrapper.find('select.form-control');
+
+    this.optionalLabel = $('<div class="form-label optional-nonuk-label">Address details (optional)</div>');
+    this.optionalLabel.insertAfter(this.lookupSection);
+
   }
 
   setInitialState () {
@@ -60,12 +64,21 @@ export default class AddressControl {
     this.addressCountryInput = this.element.find(`[name="${this.name}.country"]`);
     this.errors = {};
     this.forceManualEntry = false;
+
+    let optionalNonUk = this.element.data('optional-non-uk') || 'no';
+    if (optionalNonUk.toLocaleLowerCase() === 'no') {
+      this.optionalNonUk = false;
+    } else {
+      this.optionalNonUk = true;
+    }
   }
 
   updateVisibility () {
+    let country = this.addressCountryInput.val().toLocaleLowerCase();
+
     if (this.address1Input.val().length > 0 ||
         this.forceManualEntry ||
-        this.addressCountryInput.val().length > 0 && this.addressCountryInput.val().toLocaleLowerCase() !== 'united kingdom')
+        country.length > 0 && country !== 'united kingdom')
     {
       this.address1Input.parent().show();
       this.address2Input.parent().show();
@@ -82,7 +95,7 @@ export default class AddressControl {
       this.revealManualEntryLink.show()
     }
 
-    if (this.addressCountryInput.val().toLocaleLowerCase() === 'united kingdom') {
+    if (country === 'united kingdom') {
       this.lookupSection.show();
     } else {
       this.lookupSection.hide();
@@ -93,6 +106,12 @@ export default class AddressControl {
       this.addressPickerWrapper.show();
     } else {
       this.addressPickerWrapper.hide();
+    }
+
+    if (this.optionalNonUk && country.length > 0 && country !== 'united kingdom') {
+      this.optionalLabel.show();
+    } else {
+      this.optionalLabel.hide();
     }
   }
 
@@ -194,18 +213,21 @@ export default class AddressControl {
       };
     }
 
-    if (!this.address1Input.val() || this.address1Input.val().length === 0) {
-      this.errors.address1 = {
-        message: "Address incomplete",
-        field: this.address1Input
-      };
-    }
+    const country = this.addressCountryInput.val().toLocaleLowerCase();
 
-    if (!this.addressCityInput.val() || this.addressCityInput.val().length === 0) {
-      this.errors.city = {
-        message: "Address incomplete",
-        field: this.addressCityInput
-      };
+    if ( !this.optionalNonUk && country !== 'united kingdom' || country === 'united kingdom') {
+      if (!this.address1Input.val() || this.address1Input.val().length === 0) {
+        this.errors.address1 = {
+          message: "Address incomplete",
+          field: this.address1Input
+        };
+      }
+      if (!this.addressCityInput.val() || this.addressCityInput.val().length === 0) {
+        this.errors.city = {
+          message: "Address incomplete",
+          field: this.addressCityInput
+        };
+      }
     }
 
     let keys = Object.keys(this.errors);

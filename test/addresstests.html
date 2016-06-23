@@ -18,6 +18,11 @@
           {{ forms.address('operatingAddress', error=errors.address) }}
         </form>
       </div>
+      <div id="not-required">
+        <form>
+          {{ forms.address('operatingAddress', optionalNonUk='yes', error=errors.address) }}
+        </form>
+      </div>
       <div id="hidden-panel">
         <form>
           <div class="js-radiohide-content">
