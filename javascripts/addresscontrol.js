@@ -22,8 +22,8 @@ export default class AddressControl {
       <div>
         <div class="address__lookup-wrapper">
           <div class="form-group form-group--compact form-group--postcode" id="operatingAddress.postcode-wrapper">
-            <label class="form-label" for="operatingAddress.postcode">Postcode</label>
-            <input class="form-control postcode-lookup-value" value="">
+            <label class="form-label" for="${this.name}-postcodelookup">Postcode</label>
+            <input class="form-control postcode-lookup-value" id="${this.name}-postcodelookup" autocomplete="off" value="">
             <button class="button button-secondary lookup-postcode-button">Find UK Address</button>
           </div>
           <div class="form-group form-group--compact form-group--pick-address">
@@ -66,11 +66,10 @@ export default class AddressControl {
     this.forceManualEntry = false;
 
     let optionalNonUk = this.element.data('optional-non-uk') || 'no';
-    if (optionalNonUk.toLocaleLowerCase() === 'no') {
-      this.optionalNonUk = false;
-    } else {
-      this.optionalNonUk = true;
-    }
+    this.optionalNonUk = optionalNonUk.toLocaleLowerCase() !== 'no';
+
+    let optional = this.element.data('optional') || 'no';
+    this.optional = optional.toLocaleLowerCase() !== 'no';
   }
 
   updateVisibility () {
@@ -206,6 +205,10 @@ export default class AddressControl {
   validate() {
     this.errors = {};
 
+    if (this.optional) {
+      return true;
+    }
+
     if (!this.addressCountryInput.val() || this.addressCountryInput.val().length === 0) {
       this.errors.country = {
         message: "Invalid or missing country",
@@ -239,6 +242,10 @@ export default class AddressControl {
       errorElement = this.element;
     }
 
+    this.element.find('.error-message').remove();
+    this.element.find('.form-group--incomplete').removeClass('form-group--incomplete');
+    errorElement.removeClass('incomplete');
+
     if (keys.length > 0) {
       errorElement.addClass('incomplete');
 
@@ -252,9 +259,6 @@ export default class AddressControl {
 
       return false;
     } else {
-      this.element.find('.error-message').remove();
-      this.element.find('.form-group--incomplete').removeClass('form-group--incomplete');
-      errorElement.removeClass('incomplete');
       return true;
     }
 
