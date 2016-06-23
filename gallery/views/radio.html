@@ -13,5 +13,15 @@
     {{ forms.textbox('accountManager', label="Account manager", value=accountManager, error=errors.accountManager) }}
   {%- endcall %}
 
+  {% call forms.yesNoHidden('anotherHas',
+    label="Is the default contact in charge?",
+    radioValue=hasManager,
+    revealFor="No",
+    error=errors.accountManager)
+  -%}
+  {{ forms.textbox('accountManager', label="Head contact", value=accountManager, error=errors.accountManager) }}
+  {%- endcall %}
+
+
   {{ forms.save(backUrl="#") }}
 </form>

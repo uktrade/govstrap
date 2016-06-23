@@ -117,7 +117,7 @@
   </fieldset>
 {% endmacro %}
 
-{% macro yesNoHidden(name, label, radioValue='no', error) %}
+{% macro yesNoHidden(name, label, radioValue='no', revealFor="yes", error) %}
 
   {% if radioValue == 'Yes' or radioValue == true or error %}
     {% set yesno = 'Yes' %}
@@ -126,7 +126,8 @@
   {% endif %}
   <fieldset
     class="inline form-group form-group__checkbox-group form-group__radiohide js-radiohide"
-    id="{{ name }}-wrapper">
+    id="{{ name }}-wrapper"
+    data-reveal-for="{{ revealFor }}">
     <legend class="form-label">{{ label }}</legend>
 
     <label class="block-label" for="{{ name }}-yes">
