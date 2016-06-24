@@ -72,3 +72,11 @@ Move project to new repo.
 
 - Allow yes no radio buttons to hide on Yes
 - Allow address fields to be optional for none uk address.
+
+# 0.11.1
+
+- Add support for disabling validation in addresses.
+- Fixed bug with label for postcode lookup accessibility.
+- Improved spacing for fieldsets
+- Added support for hints to textfield
+- Fixed bug not clearing errors on address field.
