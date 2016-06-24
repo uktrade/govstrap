@@ -80,3 +80,7 @@ Move project to new repo.
 - Improved spacing for fieldsets
 - Added support for hints to textfield
 - Fixed bug not clearing errors on address field.
+
+# 0.11.2
+
+- Fix highlight in search results.
