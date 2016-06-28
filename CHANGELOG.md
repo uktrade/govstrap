@@ -92,3 +92,7 @@ Move project to new repo.
 # 0.11.4
 
 - Remove stray logging.
+
+# 0.11.5
+
+- Bugfix

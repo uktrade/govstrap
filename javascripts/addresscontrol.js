@@ -85,12 +85,12 @@ export default class AddressControl {
   }
 
   hideAddress () {
-    this.address1Input.parent().show();
-    this.address2Input.parent().show();
-    this.addressCityInput.parent().show();
-    this.addressCountyInput.parent().show();
-    this.addressPostcodeInput.parent().show();
-    this.revealManualEntryLink.hide();
+    this.address1Input.parent().hide();
+    this.address2Input.parent().hide();
+    this.addressCityInput.parent().hide();
+    this.addressCountyInput.parent().hide();
+    this.addressPostcodeInput.parent().hide();
+    this.revealManualEntryLink.show();
   }
 
   updateVisibility () {
