@@ -69,7 +69,7 @@
 {% endmacro %}
 
 {% macro addAnother(name, label, addLabel='', values=[], error) %}
-  <fieldset class="fieldset-group js-add-another{% if error %} error{% endif %}" id="{{ name }}-wrapper">
+  <fieldset class="fieldset-group js-add-another" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
         {{ textbox(name=name, label=label, value=value, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
@@ -82,7 +82,7 @@
 {% endmacro %}
 
 {% macro addAnotherDropdown(name, label, emptyLabel, addLabel='', values=[], options, error) %}
-  <fieldset class="fieldset-group js-add-another{% if error %} error{% endif %}" id="{{ name }}-wrapper">
+  <fieldset class="fieldset-group js-add-another" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
         {{ dropdown(name=name, label=label, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
@@ -119,8 +119,7 @@
 {% endmacro %}
 
 {% macro yesNoHidden(name, label, radioValue='no', revealFor="yes", error) %}
-
-  {% if radioValue == 'Yes' or radioValue == true or error %}
+  {% if radioValue == 'Yes' or radioValue == true %}
     {% set yesno = 'Yes' %}
   {% else %}
     {% set yesno = 'No' %}
@@ -250,11 +249,44 @@
 {% endmacro %}
 
 {% macro address(name, value, optionalNonUk='no', optional='no', error) %}
-  <fieldset class="js-address fieldset--address" data-name="{{name}}" data-optional-non-uk="{{ optionalNonUk }}" data-optional="{{ optional }}">
-    {{ textbox(name + '.country', label='Country', value=value.country, class="form-group--compact") }}
-    {{ textbox(name + '.address1', label='Building and street', value=value.address1, class="form-group--compact") }}
+  {{ error | log | safe }}
+  <fieldset
+    class="js-address fieldset--address{% if error %} incomplete{% endif %}"
+    data-name="{{name}}"
+    data-optional-non-uk="{{ optionalNonUk }}"
+    data-optional="{{ optional }}"
+    data-error="{{ error.message }}"
+  >
+    {% if error.message %}
+      <span class="error-message">{{ error.message }}</span>
+    {% endif %}
+    {% if error.country %}
+      error.country: {{ error.country }}
+    {% endif %}
+
+    {% if error.country %}
+      {% set countryClass = 'form-group--compact form-group--incomplete'%}
+    {% else %}
+      {% set countryClass = 'form-group--compact'%}
+    {% endif %}
+
+    {% if error.address1 %}
+      {% set address1Class = 'form-group--compact form-group--incomplete'%}
+    {% else %}
+      {% set address1Class = 'form-group--compact'%}
+    {% endif %}
+
+    {% if error.city %}
+      {% set cityClass = 'form-group--compact form-group--incomplete'%}
+    {% else %}
+      {% set cityClass = 'form-group--compact'%}
+    {% endif %}
+
+
+    {{ textbox(name + '.country', label='Country', value=value.country, class=countryClass) }}
+    {{ textbox(name + '.address1', label='Building and street', value=value.address1, class=address1Class) }}
     {{ textbox(name + '.address2', label='', value=value.address2, class="form-group--compact") }}
-    {{ textbox(name + '.city', label='Town or city', value=value.city, class="form-group--compact") }}
+    {{ textbox(name + '.city', label='Town or city', value=value.city, class=cityClass) }}
     {{ textbox(name + '.county', label='County (optional)', value=value.county, class="form-group--compact") }}
     {{ textbox(name + '.postcode', label='Postcode', value=value.postcode, class="form-group--compact form-group--postcode") }}
   </fieldset>

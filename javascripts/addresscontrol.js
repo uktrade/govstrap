@@ -14,6 +14,9 @@ export default class AddressControl {
     this.updateVisibility();
     this.addEvents();
     new Autocomplete(this.addressCountryInput, countries);
+    if (this.element.data('error').length > 0) {
+      this.showAddress();
+    }
   }
 
   setInitialView() {
@@ -72,26 +75,38 @@ export default class AddressControl {
     this.optional = optional.toLocaleLowerCase() !== 'no';
   }
 
+  showAddress () {
+    this.address1Input.parent().show();
+    this.address2Input.parent().show();
+    this.addressCityInput.parent().show();
+    this.addressCountyInput.parent().show();
+    this.addressPostcodeInput.parent().show();
+    this.revealManualEntryLink.hide();
+  }
+
+  hideAddress () {
+    this.address1Input.parent().show();
+    this.address2Input.parent().show();
+    this.addressCityInput.parent().show();
+    this.addressCountyInput.parent().show();
+    this.addressPostcodeInput.parent().show();
+    this.revealManualEntryLink.hide();
+  }
+
   updateVisibility () {
     let country = this.addressCountryInput.val().toLocaleLowerCase();
 
     if (this.address1Input.val().length > 0 ||
+        this.address2Input.val().length > 0 ||
+        this.addressCityInput.val().length > 0 ||
+        this.addressCountyInput.val().length > 0 ||
+        this.addressPostcodeInput.val().length > 0 ||
         this.forceManualEntry ||
         country.length > 0 && country !== 'united kingdom')
     {
-      this.address1Input.parent().show();
-      this.address2Input.parent().show();
-      this.addressCityInput.parent().show();
-      this.addressCountyInput.parent().show();
-      this.addressPostcodeInput.parent().show();
-      this.revealManualEntryLink.hide();
+      this.showAddress();
     } else {
-      this.address1Input.parent().hide();
-      this.address2Input.parent().hide();
-      this.addressCityInput.parent().hide();
-      this.addressCountyInput.parent().hide();
-      this.addressPostcodeInput.parent().hide();
-      this.revealManualEntryLink.show()
+      this.hideAddress();
     }
 
     if (country === 'united kingdom') {
