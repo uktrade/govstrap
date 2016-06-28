@@ -88,3 +88,7 @@ Move project to new repo.
 # 0.11.3
 
 - Improve error highlighting in address control when used with server validation
+
+# 0.11.4
+
+- Remove stray logging.

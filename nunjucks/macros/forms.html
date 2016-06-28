@@ -249,7 +249,6 @@
 {% endmacro %}
 
 {% macro address(name, value, optionalNonUk='no', optional='no', error) %}
-  {{ error | log | safe }}
   <fieldset
     class="js-address fieldset--address{% if error %} incomplete{% endif %}"
     data-name="{{name}}"
