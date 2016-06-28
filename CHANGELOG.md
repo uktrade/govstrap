@@ -84,3 +84,7 @@ Move project to new repo.
 # 0.11.2
 
 - Fix highlight in search results.
+
+# 0.11.3
+
+- Improve error highlighting in address control when used with server validation
