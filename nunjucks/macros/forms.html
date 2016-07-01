@@ -68,27 +68,27 @@
   </div>
 {% endmacro %}
 
-{% macro addAnother(name, label, addLabel='', values=[], error) %}
+{% macro addAnother(name, label, hint, addLabel='', values=[], error) %}
   <fieldset class="fieldset-group js-add-another" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
-        {{ textbox(name=name, label=label, value=value, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
+        {{ textbox(name=name, label=label, hint=hint, value=value, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
       {% endfor %}
     {% else %}
-      {{ textbox(name=name, label=label, value=value, id="{{ name }}-1", class="form-group--compact", error=error) }}
+      {{ textbox(name=name, label=label, hint=hint, value=value, id="{{ name }}-1", class="form-group--compact", error=error) }}
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
 {% endmacro %}
 
-{% macro addAnotherDropdown(name, label, emptyLabel, addLabel='', values=[], options, error) %}
+{% macro addAnotherDropdown(name, label, hint, emptyLabel, addLabel='', values=[], options, error) %}
   <fieldset class="fieldset-group js-add-another" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
-        {{ dropdown(name=name, label=label, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
+        {{ dropdown(name=name, label=label, hint=hint, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
       {% endfor %}
     {% else %}
-      {{ dropdown(name=name, label=label, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-1", class="form-group--compact", error=error) }}
+      {{ dropdown(name=name, label=label, hint=hint, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-1", class="form-group--compact", error=error) }}
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
@@ -156,13 +156,14 @@
 
 {% endmacro %}
 
-{% macro dropdown(name, label, emptyLabel, value, options, id, class, error) %}
+{% macro dropdown(name, label, hint, emptyLabel, value, options, id, class, error) %}
   {% if not id %}
     {% set id = name.replace('.','-') %}
   {% endif %}
   <div class="form-group{% if error %} error{% endif %} {{ class }}" id="{{ name }}-wrapper">
     <label class="form-label" for="{{ id }}">
       {{ label }}
+      {% if hint %}<span class="form-hint">{{ hint }}</span>{% endif %}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
     <select id="{{ id }}" class="form-control" name="{{ name }}">

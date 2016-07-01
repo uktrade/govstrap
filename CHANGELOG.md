@@ -96,3 +96,7 @@ Move project to new repo.
 # 0.11.5
 
 - Bugfix
+
+# 0.12.0
+
+- Add hints to dropdowns
