@@ -100,3 +100,11 @@ Move project to new repo.
 # 0.12.0
 
 - Add hints to dropdowns
+
+# 0.13.0
+
+- Modified autocomplete to address issue with mobile chrome.
+- Removed hidden styles, they are already provided by gov stylesheets
+- Initially hide tab content and errors in css to stop flickering when pages load js
+- Fix some autocomplete issues with chrome android
+- Improve table details on mobile

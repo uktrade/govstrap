@@ -8,7 +8,7 @@
       {% if hint %}<span class="form-hint">{{ hint }}</span>{% endif %}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
-    <input id="{{ id }}" class="form-control" name="{{ name }}" value="{{ value }}" />
+    <input id="{{ id }}" class="form-control" name="{{ name }}" value="{{ value }}" autocomplete="xxx.{{ name }}"/>
   </div>
 {% endmacro %}
 
@@ -38,7 +38,8 @@
                class="form-control"
                name="{{ name }}_day"
                value="{{ value | splitPart('/', 0) }}"
-               maxlength="2" />
+               maxlength="2"
+               autocomplete="dd" />
       </div>
 
       <div class="form-group form-group-month">
@@ -50,7 +51,8 @@
                class="form-control"
                name="{{ name }}_month"
                value="{{ value | splitPart('/', 1) }}"
-               maxlength="2" />
+               maxlength="2"
+               autocomplete="mm"/>
       </div>
 
       <div class="form-group form-group-year">
@@ -62,7 +64,8 @@
                class="form-control"
                name="{{ name }}_year"
                value="{{ value | splitPart('/', 2) }}"
-               maxlength="4" />
+               maxlength="4"
+               autocomplete="yyyy"/>
       </div>
     </fieldset>
   </div>
@@ -220,7 +223,7 @@
         class="form-control autocomplete js-autocomplete"
         name="{{ name }}"
         value="{{ value }}"
-        autocomplete="off"
+        autocomplete="{{ name }}"
         data-options="{{ options | attributeArray | safe }}"
       />
     {% else %}
@@ -229,7 +232,7 @@
         class="form-control autocomplete js-autocomplete"
         name="{{ name }}"
         value="{{ value }}"
-        autocomplete="off"
+        autocomplete="{{ name }}"
         data-options-url="{{ options_url }}"
       />
     {% endif %}

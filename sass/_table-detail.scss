@@ -5,7 +5,13 @@
   tbody {
     th {
       vertical-align: top;
-      white-space: nowrap;
+      width: 40%;
+
+      @include media(tablet) {
+        width: 30%;
+        white-space: nowrap;
+      }
+
     }
   }
 

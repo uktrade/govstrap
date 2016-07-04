@@ -14,7 +14,12 @@
   }
 
   .u-align-right {
-    text-align: right;
+
+    margin-top: 5px;
+
+    @include media(tablet) {
+      text-align: right;
+    }
 
     > div:first-child {
       @include bold-24;
