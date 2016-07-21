@@ -108,3 +108,8 @@ Move project to new repo.
 - Initially hide tab content and errors in css to stop flickering when pages load js
 - Fix some autocomplete issues with chrome android
 - Improve table details on mobile
+
+# 0.14.0
+- Create a new address layout that is more inline with the normal form layout.
+- Add new form section style, compact.
+- Capitalize first letter of name value pairs
