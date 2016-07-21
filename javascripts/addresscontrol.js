@@ -24,12 +24,12 @@ export default class AddressControl {
     let template = `
       <div>
         <div class="address__lookup-wrapper">
-          <div class="form-group form-group--compact form-group--postcode" id="operatingAddress.postcode-wrapper">
+          <div class="form-group form-group--postcode" id="operatingAddress.postcode-wrapper">
             <label class="form-label" for="${this.name}-postcodelookup">Postcode</label>
             <input class="form-control postcode-lookup-value" id="${this.name}-postcodelookup" autocomplete="off" value="">
             <button class="button button-secondary lookup-postcode-button">Find UK Address</button>
           </div>
-          <div class="form-group form-group--compact form-group--pick-address">
+          <div class="form-group form-group--pick-address">
             <label class="form-label">Pick an address</label>
             <select class="form-control"></select>
           </div>

@@ -2,6 +2,19 @@
   margin-bottom: 10px;
 }
 
+.form-group.form-group--compact {
+  margin-bottom: 10px;
+}
+
+.form-section.form-section--compact {
+
+  margin-bottom: $gutter / 3;
+
+  @include media(tablet) {
+    margin-bottom: $gutter / 2;
+  }
+}
+
 .form-control {
 
   + p {
