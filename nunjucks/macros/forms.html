@@ -75,10 +75,10 @@
   <fieldset class="fieldset-group js-add-another" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
-        {{ textbox(name=name, label=label, hint=hint, value=value, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
+        {{ textbox(name=name, label=label, hint=hint, value=value, id=(name + '-' + loop.index), class="form-group--compact", error=error) }}
       {% endfor %}
     {% else %}
-      {{ textbox(name=name, label=label, hint=hint, value=value, id="{{ name }}-1", class="form-group--compact", error=error) }}
+      {{ textbox(name=name, label=label, hint=hint, value=value, id=(name + '-1'), class="form-group--compact", error=error) }}
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
@@ -88,10 +88,10 @@
   <fieldset class="fieldset-group js-add-another" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
-        {{ dropdown(name=name, label=label, hint=hint, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-{{ loop.index }}", class="form-group--compact", error=error) }}
+        {{ dropdown(name=name, label=label, hint=hint, emptyLabel=emptyLabel, value=value, options=options, id=(name + '-' + loop.index), class="form-group--compact", error=error) }}
       {% endfor %}
     {% else %}
-      {{ dropdown(name=name, label=label, hint=hint, emptyLabel=emptyLabel, value=value, options=options, id="{{ name }}-1", class="form-group--compact", error=error) }}
+      {{ dropdown(name=name, label=label, hint=hint, emptyLabel=emptyLabel, value=value, options=options, id=(name + '-1'), class="form-group--compact", error=error) }}
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
@@ -243,10 +243,10 @@
   <fieldset class="fieldset-group js-add-another{% if error %} error{% endif %}" id="{{ name }}-wrapper">
     {% if values and values.length > 0 %}
       {% for value in values %}
-        {{ autocomplete(name, label, value, options, options_url, id="{{ name }}-{{ loop.index }}", class="form-group--compact") }}
+        {{ autocomplete(name, label, value, options, options_url, id=(name + '-' + loop.index), class="form-group--compact") }}
       {% endfor %}
     {% else %}
-      {{ autocomplete(name, label, value, options, options_url, id="{{ name }}-1", class="form-group--compact") }}
+      {{ autocomplete(name, label, value, options, options_url, id=(name + '-1'), class="form-group--compact") }}
     {% endif %}
     <a class="add-another-button" href="#">Add another {{ addLabel }}</a>
   </fieldset>
