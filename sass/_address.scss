@@ -1,34 +1,4 @@
 .fieldset--address {
-  display: table;
-  padding: 20px 0 30px;
-
-  .form-group {
-    display: table-row;
-
-    .form-label {
-      display: table-cell;
-      float: left;
-      width: 30%;
-      box-sizing: border-box;
-    }
-
-    .form-control {
-      box-sizing: border-box;
-      display: table-cell;
-      float: left;
-      width: 70%;
-
-      @include media(tablet) {
-        width: 50%;
-      }
-
-    }
-
-    &.form-group--postcode .form-control {
-      width: 25%;
-    }
-
-  }
 
   .autosuggest__suggestions {
     width: 70%;

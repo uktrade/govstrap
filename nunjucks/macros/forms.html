@@ -252,7 +252,7 @@
   </fieldset>
 {% endmacro %}
 
-{% macro address(name, value, optionalNonUk='no', optional='no', error) %}
+{% macro address(name, value, label='Address', optionalNonUk='no', optional='no', error) %}
   <fieldset
     class="js-address fieldset--address{% if error %} incomplete{% endif %}"
     data-name="{{name}}"
@@ -260,6 +260,7 @@
     data-optional="{{ optional }}"
     data-error="{{ error.message }}"
   >
+    <legend class="heading-medium">{{ label }}</legend>
     {% if error.message %}
       <span class="error-message">{{ error.message }}</span>
     {% endif %}
@@ -268,30 +269,30 @@
     {% endif %}
 
     {% if error.country %}
-      {% set countryClass = 'form-group--compact form-group--incomplete'%}
+      {% set countryClass = 'form-group--incomplete'%}
     {% else %}
-      {% set countryClass = 'form-group--compact'%}
+      {% set countryClass = ''%}
     {% endif %}
 
     {% if error.address1 %}
-      {% set address1Class = 'form-group--compact form-group--incomplete'%}
+      {% set address1Class = 'form-group--incomplete'%}
     {% else %}
-      {% set address1Class = 'form-group--compact'%}
+      {% set address1Class = ''%}
     {% endif %}
 
     {% if error.city %}
-      {% set cityClass = 'form-group--compact form-group--incomplete'%}
+      {% set cityClass = 'form-group--incomplete'%}
     {% else %}
-      {% set cityClass = 'form-group--compact'%}
+      {% set cityClass = ''%}
     {% endif %}
 
 
     {{ textbox(name + '.country', label='Country', value=value.country, class=countryClass) }}
     {{ textbox(name + '.address1', label='Building and street', value=value.address1, class=address1Class) }}
-    {{ textbox(name + '.address2', label='', value=value.address2, class="form-group--compact") }}
+    {{ textbox(name + '.address2', label='', value=value.address2) }}
     {{ textbox(name + '.city', label='Town or city', value=value.city, class=cityClass) }}
-    {{ textbox(name + '.county', label='County (optional)', value=value.county, class="form-group--compact") }}
-    {{ textbox(name + '.postcode', label='Postcode', value=value.postcode, class="form-group--compact form-group--postcode") }}
+    {{ textbox(name + '.county', label='County (optional)', value=value.county) }}
+    {{ textbox(name + '.postcode', label='Postcode', value=value.postcode, class="form-group--postcode") }}
   </fieldset>
 
 {% endmacro %}

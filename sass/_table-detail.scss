@@ -13,6 +13,10 @@
       }
 
     }
+
+    td:first-letter {
+      text-transform: capitalize;
+    }
   }
 
   ul {
