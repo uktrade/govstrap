@@ -113,3 +113,7 @@ Move project to new repo.
 - Create a new address layout that is more inline with the normal form layout.
 - Add new form section style, compact.
 - Capitalize first letter of name value pairs
+
+# 0.15.0
+- Improve address layout, especially for mobile
+- Accurately indicate which address fields are optional.
