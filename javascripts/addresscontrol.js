@@ -39,20 +39,12 @@ export default class AddressControl {
 
     this.lookupSection = $(template);
     this.lookupSection.insertAfter(this.addressCountryInput.parent());
-
     this.addressPickerWrapper = this.lookupSection.find('.form-group--pick-address');
     this.addressPickerWrapper.hide();
-
     this.lookupPostcodeButton = this.lookupSection.find('.lookup-postcode-button');
     this.lookupPostcodeInput = this.lookupSection.find('.postcode-lookup-value');
-
     this.revealManualEntryLink = this.lookupSection.find('.reveal-manual-entry');
-
     this.addressDropdown = this.addressPickerWrapper.find('select.form-control');
-
-    this.optionalLabel = $('<div class="form-label optional-nonuk-label">Address details (optional)</div>');
-    this.optionalLabel.insertAfter(this.lookupSection);
-
   }
 
   setInitialState () {
@@ -120,12 +112,6 @@ export default class AddressControl {
       this.addressPickerWrapper.show();
     } else {
       this.addressPickerWrapper.hide();
-    }
-
-    if (this.optionalNonUk && country.length > 0 && country !== 'united kingdom') {
-      this.optionalLabel.show();
-    } else {
-      this.optionalLabel.hide();
     }
   }
 

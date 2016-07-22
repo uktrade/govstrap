@@ -1,24 +1,27 @@
 .fieldset--address {
 
   .autosuggest__suggestions {
-    width: 70%;
+    width: 100%;
 
     @include media(tablet) {
-      width: 50%;
+      width: 66%;
     }
   }
 
   .address__lookup-wrapper {
 
     .form-group .form-control {
-      width: 25%;
+      width: 100%;
+      @include media(tablet) {
+        width: 25%;
+      }
     }
 
     .form-group select.form-control {
-      width: 70%;
+      width: 100%;
 
       @include media(tablet) {
-        width: 50%;
+        width: 66%;
       }
     }
 
@@ -26,8 +29,8 @@
       @include core-16();
       background-color: $grey-2;
       color: $black;
-      margin: 0 0 0 5px;
-      width: 42%;
+      margin: 10px 0 0 0;
+      width: 100%;
 
       @include media(tablet) {
         margin: 0 0 0 5px;
@@ -38,7 +41,6 @@
 
   .reveal-manual-entry {
     display: block;
-    margin-left: 30%;
     margin-bottom: 20px;
   }
 }

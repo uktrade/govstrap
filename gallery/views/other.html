@@ -1,9 +1,4 @@
 <form>
-  {{ forms.address('address',
-  label="Address",
-  value=address,
-  error=errors.address) }}
-
   {{ forms.date(name='mydate', label='Date of interaction', value=myDate, id="my_date", error=errors.myDate) }}
 
   {{ forms.date(name='badDate', label='Date of interaction', value=badDate, id="another_date", error=errors.dateError) }}
