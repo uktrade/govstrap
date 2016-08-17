@@ -107,7 +107,7 @@
              type="radio"
              name="{{ name }}"
              value="Yes"
-             {% if radioValue == 'yes' or radioValue == true %}checked="checked"{% endif %} />
+             {% if radioValue.toLowerCase() == 'yes' or radioValue == true %}checked="checked"{% endif %} />
       Yes
     </label>
     <label class="block-label" for="{{ name }}-no">
@@ -115,7 +115,7 @@
              type="radio"
              name="{{ name }}"
              value="No"
-             {% if radioValue == 'no' or radioValue == false or not radioValue %}checked="checked"{% endif %} />
+             {% if radioValue.toLowerCase() == 'no' or radioValue == false or not radioValue %}checked="checked"{% endif %} />
       No
     </label>
   </fieldset>

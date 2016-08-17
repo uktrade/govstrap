@@ -117,3 +117,6 @@ Move project to new repo.
 # 0.15.0
 - Improve address layout, especially for mobile
 - Accurately indicate which address fields are optional.
+
+# 0.15.1
+- Fixed issue with yes no boxes being case sensitive
