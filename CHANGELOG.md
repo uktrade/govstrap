@@ -120,3 +120,6 @@ Move project to new repo.
 
 # 0.15.1
 - Fixed issue with yes no boxes being case sensitive
+
+# 0.15.2
+- Fixed issue when calling yes no with null.
