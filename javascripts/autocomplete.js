@@ -20,7 +20,7 @@ class Autocomplete {
     this.sourceField.parent().css({
       position: 'relative'
     });
-    this.displayField.attr('autocomplete',this.sourceField.attr('name'));
+    this.displayField.attr('autocomplete', 'off');
   }
 
   setupDisplayField() {

@@ -123,3 +123,7 @@ Move project to new repo.
 
 # 0.15.2
 - Fixed issue when calling yes no with null.
+
+# 0.15.3
+- Fixed issue when empty radio values
+- Fixed issue with autocomplete on address country

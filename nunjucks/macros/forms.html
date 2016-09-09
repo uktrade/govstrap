@@ -1,4 +1,4 @@
-{% macro textbox(name, label, value='', hint, id, class, error) %}
+{% macro textbox(name, label, value='', hint, id, class, error, autocomplete=true) %}
   {% if not id %}
     {% set id = name.replace('.','-') %}
   {% endif %}
@@ -8,7 +8,7 @@
       {% if hint %}<span class="form-hint">{{ hint }}</span>{% endif %}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
-    <input id="{{ id }}" class="form-control" name="{{ name }}" value="{{ value }}" autocomplete="xxx.{{ name }}"/>
+    <input id="{{ id }}" class="form-control" name="{{ name }}" value="{{ value }}" {% if(autocomplete == false)%}autocomplete="off"{% endif %}/>
   </div>
 {% endmacro %}
 
@@ -100,7 +100,7 @@
 {% macro yesNo(name, label, radioValue='no', error) %}
   <fieldset class="inline form-group form-group__checkbox-group" id="{{ name }}-wrapper">
 
-    {% if radioValue %}
+    {% if radioValue and radioValue.length > 0 %}
       {% set radioValue = radioValue.toLowerCase() %}
     {% endif %}
 
@@ -306,7 +306,7 @@
   >
     <legend class="heading-medium">{{ label }}</legend>
 
-    {{ textbox(name + '.country', label=countryLabel, value=value.country, class=countryClass) }}
+    {{ textbox(name + '.country', label=countryLabel, value=value.country, class=countryClass, autocomplete=false) }}
     {{ textbox(name + '.address1', label=address1Label, value=value.address1, class=address1Class) }}
     {{ textbox(name + '.address2', label='', value=value.address2) }}
     {{ textbox(name + '.city', label=cityLabel, value=value.city, class=cityClass) }}
