@@ -225,6 +225,9 @@ class Autocomplete {
       .on('keypress', this.keypress)
       .on('keyup', this.keyup);
 
+    this.sourceField
+      .on('change', this.sourceChange);
+
     if (this.eventSupported('keydown')) {
       this.displayField.on('keydown', this.keydown);
     }
@@ -332,6 +335,10 @@ class Autocomplete {
     this.mousedover = false;
     if (!this.focused && this.shown) this.hide();
   };
+
+  sourceChange = () => {
+    this.displayField.val(this.sourceField.val());
+  }
 
 }
 

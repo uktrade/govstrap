@@ -3,6 +3,14 @@
 var moment = require('moment');
 var pkgJson = require('../../package.json');
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
 /**
  * object used store the methods registered as a 'filter' (of the same name) within nunjucks
  * filter.foo("input") here, becomes {{ "input" | foo }} within nunjucks templates
@@ -139,5 +147,13 @@ filter.attributeObject = function(myObject) {
   result = result.substr(0, result.length -1) + '}';
   return result;
 };
+
+filter.humanFieldName = function (fieldName) {
+  fieldName = fieldName.toLocaleLowerCase();
+  fieldName = capitalizeFirstLetter(fieldName);
+  fieldName = replaceAll(fieldName, '_', ' ');
+  return fieldName;
+};
+
 
 module.exports = filter;

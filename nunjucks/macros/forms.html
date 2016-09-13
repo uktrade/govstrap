@@ -126,11 +126,18 @@
   </fieldset>
 {% endmacro %}
 
-{% macro yesNoHidden(name, label, radioValue='no', revealFor="yes", error) %}
-  {% if radioValue == 'Yes' or radioValue == true %}
+{% macro yesNoHidden(name, label, radioValue='none', revealFor="yes", error) %}
+
+  {% if radioValue and radioValue.toLowerCase %}
+    {% set radioValue = radioValue.toLowerCase() %}
+  {% endif %}
+
+  {% if radioValue === 'yes' or radioValue === true %}
     {% set yesno = 'Yes' %}
-  {% else %}
+  {% elseif radioValue === 'no' or radioValue == true %}
     {% set yesno = 'No' %}
+  {% else %}
+    {% set yesno = 'none' %}
   {% endif %}
   <fieldset
     class="inline form-group form-group__checkbox-group form-group__radiohide js-radiohide"
@@ -204,7 +211,7 @@
       <ul class="error-summary-list">
         {% for name, item in errors %}
           <li>
-            <a href="#{{ name }}-wrapper">{{ item }}</a></li>
+            <a href="#{{ name }}-wrapper">{{ name | humanFieldName }} - {{ item }}</a></li>
         {% endfor %}
       </ul>
 

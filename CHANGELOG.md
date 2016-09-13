@@ -127,3 +127,8 @@ Move project to new repo.
 # 0.15.3
 - Fixed issue when empty radio values
 - Fixed issue with autocomplete on address country
+
+# 0.15.4
+- If the original field for an autocomplete field changes then display it's display field
+- Update error panel tobe compatible with django rest framework errors
+- Allow Yes/No hidden to be neither yes or no
