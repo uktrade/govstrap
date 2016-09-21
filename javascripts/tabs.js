@@ -9,12 +9,17 @@ class Tabs {
     this.bindEvents();
 
     let hash = window.location.hash.substring(1);
+    let tabElement;
 
     if (hash) {
-      this.toggleTab(this.tabs.filter(`#tab-${hash}`));
-    } else {
-      this.toggleTab(this.tabs.filter('.is-selected'));
+      tabElement = this.tabs.filter(`#tab-${hash}`);
     }
+
+    if (!tabElement || tabElement.length === 0) {
+      tabElement = this.tabs.filter('.is-selected');
+    }
+
+    this.toggleTab(tabElement);
   }
 
   cacheEls(element) {
@@ -34,6 +39,9 @@ class Tabs {
   };
 
   toggleTab(tab) {
+
+    if (!tab || tab.length === 0) return;
+
     tab.parents('.tabs-nav')
       .find('a')
       .removeClass('is-selected');

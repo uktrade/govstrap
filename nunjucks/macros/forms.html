@@ -132,9 +132,9 @@
     {% set radioValue = radioValue.toLowerCase() %}
   {% endif %}
 
-  {% if radioValue === 'yes' or radioValue === true %}
+  {% if radioValue == 'yes' or radioValue == true %}
     {% set yesno = 'Yes' %}
-  {% elseif radioValue === 'no' or radioValue == true %}
+  {% elif radioValue == 'no' or radioValue == true %}
     {% set yesno = 'No' %}
   {% else %}
     {% set yesno = 'none' %}
