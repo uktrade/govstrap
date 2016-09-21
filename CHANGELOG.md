@@ -132,3 +132,7 @@ Move project to new repo.
 - If the original field for an autocomplete field changes then display it's display field
 - Update error panel tobe compatible with django rest framework errors
 - Allow Yes/No hidden to be neither yes or no
+
+# 0.16.0
+- Fix bug with yes no dropdown
+- Fix issue when calling a page with tabs with unknown #
