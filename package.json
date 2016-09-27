@@ -1,6 +1,6 @@
 {
   "name": "govstrap",
-  "version": "0.16.0",
+  "version": "1.0.0",
   "description": "Govstrap is a collection of layout templates and sass tools and used as the front end toolkit for UKTI web services",
   "main": "dist/index.js",
   "repository": {
@@ -29,7 +29,6 @@
     "eslint": "^2.7.0",
     "eslint-plugin-react": "^5.1.1",
     "express": "^4.13.4",
-    "express-nunjucks": "^1.0.0",
     "govuk_template_jinja": "^0.17.3",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
@@ -47,7 +46,7 @@
     "mocha-junit-reporter": "^1.9.1",
     "mocha-multi": "^0.7.2",
     "moment": "^2.13.0",
-    "nunjucks": "^2.4.2",
+    "nunjucks": "^2.5.2",
     "require-dir": "^0.3.0",
     "sinomocha": "^0.2.4",
     "sinon": "^1.17.3",

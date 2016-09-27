@@ -136,3 +136,10 @@ Move project to new repo.
 # 0.16.0
 - Fix bug with yes no dropdown
 - Fix issue when calling a page with tabs with unknown #
+
+# 1.0.0
+Not really a big change but correct versioning scheme.
+
+- BREAKING CHANGE: Address field switch from value to addressValue to 
+fix an issue where fields that are null pull the parent value was used 
+so the field says 'Object'

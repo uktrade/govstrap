@@ -2,37 +2,32 @@
 
 const express = require('express');
 const app = express();
-const nunjucks = require('express-nunjucks');
+const nunjucks = require('nunjucks');
 const filters = require('./nunjucks/filters/index');
 const config = require('./config');
 const path = require('path');
 const compression = require('compression');
+const isDev = app.get('env') === 'development';
 
-let nunjucksConfig = {
-  autoescape: true
-};
-
-if (config.env !== 'production') {
-  nunjucksConfig.noCache = true;
-}
-
-app.use(compression());
 app.set('view engine', 'html');
-app.set('views', [
+
+const nunenv = nunjucks.configure([
   path.resolve('./gallery/views'),
+  path.resolve('./nunjucks'),
   path.resolve('./test'),
   path.resolve('./node_modules/govuk_template_jinja/views'),
-  path.resolve('./nunjucks')
-]);
-
-nunjucks.setup(nunjucksConfig, app);
-
-// Add extra filters to nunjucks
-nunjucks.ready(function(nj) {
-  Object.keys(filters).forEach(function(filterName) {
-    nj.addFilter(filterName, filters[filterName]);
-  });
+], {
+  autoescape: true,
+  express: app,
+  watch: isDev
 });
+
+Object.keys(filters).forEach((filterName) => {
+  nunenv.addFilter(filterName, filters[filterName]);
+});
+
+app.use(compression());
+
 
 app.use('/images', express.static(path.resolve('./images')));
 app.use('/images', express.static(path.resolve('./node_modules/govuk_frontend_toolkit/images')));
@@ -52,11 +47,9 @@ let fakeData = {
   countryOptions: ['Country 1', 'Country 2', 'United Kingdom', 'Spain', 'France'],
   address: {
     address1: 'Address1',
-    address2: 'Address2',
     city: 'City',
     county: 'Berkshire',
-    postcode: 'postcode',
-    country: 'United Kingdom'
+    postcode: 'postcode'
   },
   primaryContact: true,
   hasManager: false,

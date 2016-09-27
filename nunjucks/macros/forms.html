@@ -8,7 +8,11 @@
       {% if hint %}<span class="form-hint">{{ hint }}</span>{% endif %}
       {% if error %}<span class="error-message">{{ error }}</span>{% endif %}
     </label>
-    <input id="{{ id }}" class="form-control" name="{{ name }}" value="{{ value }}" {% if(autocomplete == false)%}autocomplete="off"{% endif %}/>
+    <input id="{{ id }}"
+           class="form-control"
+           name="{{ name }}"
+           {% if value %}value="{{ value }}"{% endif %}
+           {% if(autocomplete == false)%}autocomplete="off"{% endif %}/>
   </div>
 {% endmacro %}
 
@@ -264,7 +268,7 @@
   </fieldset>
 {% endmacro %}
 
-{% macro address(name, value, label='Address', optionalNonUk='no', optional='no', error) %}
+{% macro address(name, addressValue, label='Address', optionalNonUk='no', optional='no', error) %}
 
   {% if error.message %}
     <span class="error-message">{{ error.message }}</span>
@@ -312,13 +316,12 @@
     data-error="{{ error.message }}"
   >
     <legend class="heading-medium">{{ label }}</legend>
-
-    {{ textbox(name + '.country', label=countryLabel, value=value.country, class=countryClass, autocomplete=false) }}
-    {{ textbox(name + '.address1', label=address1Label, value=value.address1, class=address1Class) }}
-    {{ textbox(name + '.address2', label='', value=value.address2) }}
-    {{ textbox(name + '.city', label=cityLabel, value=value.city, class=cityClass) }}
-    {{ textbox(name + '.county', label='County / region (optional)', value=value.county) }}
-    {{ textbox(name + '.postcode', label=postcodeLabel, value=value.postcode, class="form-group--postcode") }}
+    {{ textbox(name + '.country', label=countryLabel, value=addressValue.country, class=countryClass, autocomplete=false) }}
+    {{ textbox(name + '.address1', label=address1Label, value=addressValue.address1, class=address1Class) }}
+    {{ textbox(name + '.address2', label='', value=addressValue.address2) }}
+    {{ textbox(name + '.city', label=cityLabel, value=addressValue.city, class=cityClass) }}
+    {{ textbox(name + '.county', label='County / region (optional)', addressValue=value.county) }}
+    {{ textbox(name + '.postcode', label=postcodeLabel, value=addressValue.postcode, class="form-group--postcode") }}
   </fieldset>
 
 {% endmacro %}
