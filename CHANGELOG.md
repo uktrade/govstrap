@@ -140,6 +140,11 @@ Move project to new repo.
 # 1.0.0
 Not really a big change but correct versioning scheme.
 
-- BREAKING CHANGE: Address field switch from value to addressValue to 
-fix an issue where fields that are null pull the parent value was used 
+- BREAKING CHANGE: Address field switch from value to addressValue to
+fix an issue where fields that are null pull the parent value was used
 so the field says 'Object'
+
+
+# 1.1.0
+- Added support for drop downs that accept data in format { id: x, name: 'y' }
+- Fixed bug with address county
