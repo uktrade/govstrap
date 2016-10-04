@@ -190,6 +190,8 @@
       {% for option in options  %}
         {% if option.label %}
           <option value="{{ option.value }}" {% if option.value == value %}selected="selected"{% endif %}>{{ option.label }}</option>
+        {% elif option.id %}
+          <option value="{{ option.id }}" {% if option.id == value %}selected="selected"{% endif %}>{{ option.name }}</option>
         {% else %}
           <option value="{{ option }}" {% if option == value %}selected="selected"{% endif %}>{{ option }}</option>
         {% endif %}
@@ -320,7 +322,7 @@
     {{ textbox(name + '.address1', label=address1Label, value=addressValue.address1, class=address1Class) }}
     {{ textbox(name + '.address2', label='', value=addressValue.address2) }}
     {{ textbox(name + '.city', label=cityLabel, value=addressValue.city, class=cityClass) }}
-    {{ textbox(name + '.county', label='County / region (optional)', addressValue=value.county) }}
+    {{ textbox(name + '.county', label='County / region (optional)', value=addressValue.county) }}
     {{ textbox(name + '.postcode', label=postcodeLabel, value=addressValue.postcode, class="form-group--postcode") }}
   </fieldset>
 
